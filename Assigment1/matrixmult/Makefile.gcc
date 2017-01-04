@@ -1,12 +1,12 @@
 TARGET	= libmatmult.so
 LIBSRCS	= 
-LIBOBJS	=
+LIBOBJS	= matmult_lib.o matmult_nat.o
 
 OPT	= -g 
 PIC	= -fPIC
 
 CC	= gcc
-CFLAGS= $(OPT) $(PIC) $(XOPTS)
+CFLAGS= $(OPT) $(PIC) $(XOPTS) -std=c99
 
 SOFLAGS = -shared 
 XLIBS	= 

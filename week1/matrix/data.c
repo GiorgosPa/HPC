@@ -1,7 +1,7 @@
 #include "data.h"
 
 void initializeMM(double* restrict A, double* restrict B, int m, int n, int k){
-
+int x; 
     for (int i = 0; i < m; i++){
         for (int j = 0; j < k; j++){
             A[i * k + j] = 10 * (i + 1) + j + 1;
