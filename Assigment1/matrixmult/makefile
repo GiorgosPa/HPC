@@ -1,4 +1,4 @@
-OPT = -g 
+OPT = -g -O5 
 CC = gcc
 WARN = -Wall
 CFLAGS = -std=c99 $(OPT) $(WARN) -fPIC
