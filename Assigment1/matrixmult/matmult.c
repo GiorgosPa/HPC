@@ -1,5 +1,11 @@
 #include <cblas.h>
 
+#define MIN(a,b) \
+   ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+     _a < _b ? _a : _b; })
+
+
 void matmult_lib(int m, int n, int k,double** restrict A, double** restrict B, double** restrict C){
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1.0, &A[0][0], k, &B[0][0], n, 0.0, &C[0][0], n);
 }
@@ -107,17 +113,17 @@ void matmult_blk( int m, int n, int k, double** restrict A, double** restrict B,
         }
     }
 
-    int mi = bs, mj=bs, mrc=bs;
+    int mi, mj, mrc;
 
 	for (int i1 = 0; i1 < m; i1+=bs){
-        if ((m - i1)<bs) mi = m - i1;
+        mi = MIN(bs, m - i1);
 	    for (int rc1 = 0; rc1 < k; rc1+=bs){
-            if ((k-rc1)<bs) mrc = k - rc1;
+            mrc = MIN(bs, k - rc1);
 	    	for (int j1 = 0; j1 < n; j1+=bs){
-                if ((n - j1)<bs) mj = n - j1;
-	        	for (int i2 = 0; i2 < bs && i2 < m - i1; i2++){
-		            for (int rc2 = 0; rc2 < bs && rc2 < k - rc1; rc2++){
-		                for (int j2 = 0; j2 < bs && j2 < n - j1; j2++){
+                mj = MIN(bs, n - j1);
+	        	for (int i2 = 0; i2 < mi; i2++){
+		            for (int rc2 = 0; rc2 < mrc; rc2++){
+		                for (int j2 = 0; j2 < mj; j2++){
 		                    C[i1 + i2][j1 + j2] += A[i1 + i2][rc1 + rc2] * B[rc1 + rc2][j1 + j2];
 		                }
 		            }
