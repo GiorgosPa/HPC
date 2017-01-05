@@ -2,7 +2,6 @@
 #include "matmult.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <cblas.h>
 
 int main(){
     int m = 3, n = 2, k = 5;
@@ -10,7 +9,7 @@ int main(){
     double** B = malloc_2d(k, n);
     double** C = malloc_2d(m, n);
     initializeMM(*A, *B, m, n, k);
-    matmult_lib( m, n, k, A, B, C);
+    matmult_blk( m, n, k, A, B, C, 5);
 
     printf("A\n");
     for (int i = 0; i < m; i++){

@@ -1,7 +1,11 @@
-*.o
 .DS_Store
 *.o
 *~
 *libmatmult.so
 *matmult_nat
 *cblas_test
+<<<<<<< HEAD
+=======
+*matmult_blk_test
+*matmult_nat_test
+>>>>>>> 0343c61595f8605548f69af0ef632e1349cc16ee

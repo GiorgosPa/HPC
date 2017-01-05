@@ -1,27 +1,26 @@
-OPT = -g -O3
+OPT = -g -O0
 CC = gcc
 WARN = -Wall
 CFLAGS = -std=c99 $(OPT) $(WARN) -fPIC
 
 all:
 	$(MAKE) clean
-	$(MAKE) matmult_nat
-	$(MAKE) matmult_lib
-	$(MAKE) cblas
+	$(MAKE) libmatmult
+	$(MAKE) matmult_nat_test
+	$(MAKE) matmult_blk_test
 	$(MAKE) cblas_test
 
-matmult_nat: matmult_nat.o
-	$(CC) $(CFLAGS) -o matmult_nat matmult_nat.o -shared
+libmatmult: matmult.o
+	$(CC) $(CFLAGS) -o libmatmult.so matmult.o -L /usr/lib64/atlas -lcblas -shared
 
-matmult_lib: matmult_lib.o
-	$(CC) $(CFLAGS) -o matmult_nat matmult_lib.o -shared
+cblas_test: data.o cblas_test.o matmult.o
+	$(CC) $(CFLAGS) -o cblas_test data.o cblas_test.o matmult.o -L /usr/lib64/atlas -lcblas
 
-cblas: matmult_lib.o matmult_nat.o
-	$(CC) $(CFLAGS) -o libmatmult.so matmult_lib.o matmult_nat.o -L /usr/lib64/atlas -lcblas -shared
+matmult_nat_test: data.o matmult_nat_test.o matmult.o
+	$(CC) $(CFLAGS) -o matmult_nat_test data.o matmult_nat_test.o matmult.o -L /usr/lib64/atlas -lcblas
 
-cblas_test: data.o cblas_test.o
-	$(CC) $(CFLAGS) -o cblas_test data.o cblas_test.o -L /usr/lib64/atlas -lcblas
-
+matmult_blk_test: data.o matmult_blk_test.o matmult.o
+	$(CC) $(CFLAGS) -o matmult_blk_test data.o matmult_blk_test.o matmult.o -L /usr/lib64/atlas -lcblas
 
 clean:
 	@rm -f *.o matmult_nat
