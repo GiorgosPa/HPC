@@ -46,3 +46,35 @@
   5859.375   1439.758 0 # matmult_nmk
  13183.594   1498.896 0 # matmult_nmk
  23437.500   1511.946 0 # matmult_nmk
+     2.344   2156.152 0 # matmult_lib
+    58.594   4424.696 0 # matmult_lib
+   131.836   4007.367 0 # matmult_lib
+   234.375   4511.847 0 # matmult_lib
+  1464.844   4640.353 0 # matmult_lib
+  5859.375   4573.360 0 # matmult_lib
+ 13183.594   3980.559 0 # matmult_lib
+ 23437.500   4552.058 0 # matmult_lib
+     2.344   1300.929 0 # matmult_blk 700
+    58.594   1665.948 0 # matmult_blk 700
+   131.836   1991.171 0 # matmult_blk 700
+   234.375   1864.329 0 # matmult_blk 700
+  1464.844   2131.478 0 # matmult_blk 700
+  5859.375   2262.787 0 # matmult_blk 700
+ 13183.594   2193.315 0 # matmult_blk 700
+ 23437.500   2052.646 0 # matmult_blk 700
+     2.344   1187.995 0 # matmult_blk 35
+    58.594   1585.796 0 # matmult_blk 35
+   131.836   1492.042 0 # matmult_blk 35
+   234.375   1595.711 0 # matmult_blk 35
+  1464.844   1506.629 0 # matmult_blk 35
+  5859.375   1614.711 0 # matmult_blk 35
+ 13183.594   1579.804 0 # matmult_blk 35
+ 23437.500   1602.808 0 # matmult_blk 35
+     2.344   1246.331 0 # matmult_blk 550
+    58.594   1840.000 0 # matmult_blk 550
+   131.836   1934.367 0 # matmult_blk 550
+   234.375   1805.673 0 # matmult_blk 550
+  1464.844   2122.493 0 # matmult_blk 550
+  5859.375   2288.677 0 # matmult_blk 550
+ 13183.594   1956.010 0 # matmult_blk 550
+ 23437.500   1918.450 0 # matmult_blk 550
