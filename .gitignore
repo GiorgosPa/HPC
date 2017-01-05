@@ -1,7 +1,8 @@
-*.o
 .DS_Store
 *.o
 *~
 *libmatmult.so
 *matmult_nat
 *cblas_test
+*matmult_blk_test
+*matmult_nat_test
