@@ -4,13 +4,12 @@
 #include <stdlib.h>
 #include <cblas.h>
 
-
 int main(){
     int m = 3, n = 2, k = 5;
     double** A = malloc_2d(m, k);
     double** B = malloc_2d(k, n);
     double** C = malloc_2d(m, n);
-    initializeMM(*A, *B, m, n, k);                                                          
+    initializeMM(*A, *B, m, n, k);
     matmult_lib( m, n, k, A, B, C);
 
     printf("A\n");

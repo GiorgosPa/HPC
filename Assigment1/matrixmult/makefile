@@ -10,7 +10,6 @@ all:
 	$(MAKE) matmult_blk_test
 	$(MAKE) cblas_test
 
-
 libmatmult: matmult.o
 	$(CC) $(CFLAGS) -o libmatmult.so matmult.o -L /usr/lib64/atlas -lcblas -shared
 

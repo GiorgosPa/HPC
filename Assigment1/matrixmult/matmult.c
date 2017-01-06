@@ -113,14 +113,14 @@ void matmult_blk( int m, int n, int k, double** restrict A, double** restrict B,
         }
     }
 
-    int mi, mj, mrc;
+    int mi = bs, mj = bs, mrc = bs;
 
 	for (int i1 = 0; i1 < m; i1+=bs){
-        mi = MIN(bs, m - i1);
+        if (m - i1 < bs) mi = m - i1;
 	    for (int rc1 = 0; rc1 < k; rc1+=bs){
-            mrc = MIN(bs, k - rc1);
+        	if (k - rc1 < bs) mrc = k - rc1; else mrc = bs;
 	    	for (int j1 = 0; j1 < n; j1+=bs){
-                mj = MIN(bs, n - j1);
+        		if (n - j1 < bs) mj = n - j1; else mj = bs;
 	        	for (int i2 = 0; i2 < mi; i2++){
 		            for (int rc2 = 0; rc2 < mrc; rc2++){
 		                for (int j2 = 0; j2 < mj; j2++){
