@@ -1,24 +1,24 @@
 %% Plot 1: Permutations 
 
 %x-axis (in kilobytes)
-memoryl2 = log2([2.344 14.648 58.594 131.836  234.375 1464.844 5859.375 13183.594 23437.500]);
+memoryl2 = log2([2.344 14.648 58.594 131.836  234.375 1464.844 5859.375 13183.594 23437.500 93750.000]);
 
 memoryFP = memoryl2; 
 
 %y-axis variables (in MFLOPS/s)
-natMFLOPS = [1657.531 1737.248 1722.938 1820.201 1790.412 1459.729 1357.600 1338.640 1410.984];
+natMFLOPS = [1657.531 1737.248 1722.938 1820.201 1790.412 1459.729 1357.600 1338.640 1410.984 877.808];
 
-mknMFLOPS = [1669.484 2237.021 2174.440 2347.731 2362.906 2495.389 2584.372 2579.091 2647.656];
+mknMFLOPS = [1669.484 2237.021 2174.440 2347.731 2362.906 2495.389 2584.372 2579.091 2647.656 2514.919];
 
-kmnMFLOPS = [1694.178 1715.251 2185.604 2363.759 2432.226 2350.606 2422.848 2474.717 2464.947];
+kmnMFLOPS = [1694.178 1715.251 2185.604 2363.759 2432.226 2350.606 2422.848 2474.717 2464.947 2161.614];
 
-knmMFLOPS = [1342.414 1458.288 1543.887 1605.928 1653.034  968.252  621.985  626.797  628.236];
+knmMFLOPS = [1342.414 1458.288 1543.887 1605.928 1653.034  968.252  621.985  626.797  628.236 413.403];
 
-nkmMFLOPS = [1326.821 1376.625 1541.638 1622.800 1632.371  942.094  630.812  596.521  645.259];
+nkmMFLOPS = [1326.821 1376.625 1541.638 1622.800 1632.371  942.094  630.812  596.521  645.259 406.421];
 
-nmkMFLOPS = [1614.073 1801.236 1742.267 1757.213 1783.677 1626.988 1439.758 1498.896 1511.946];
+nmkMFLOPS = [1614.073 1801.236 1742.267 1757.213 1783.677 1626.988 1439.758 1498.896 1511.946 772.095];
 
-libMFLOPS = [2156.152 4616.871 4424.696 4007.367 4511.847 4640.353 4573.360 3980.559 4552.058];
+libMFLOPS = [2156.152 4616.871 4424.696 4007.367 4511.847 4640.353 4573.360 3980.559 4552.058 5033.796];
 
 %note: add horizontal line of 36,800 as theoretical peak
 
@@ -30,14 +30,14 @@ set(gcf, 'Color', 'w');
 
 plot(memoryFP, natMFLOPS, memoryFP, mknMFLOPS, memoryFP, kmnMFLOPS, memoryFP, knmMFLOPS, memoryFP, nkmMFLOPS, memoryFP, nmkMFLOPS, memoryFP, libMFLOPS);
 legend('nat', 'mkn', 'kmn', 'knm', 'nkm', 'nmk', 'lib', 'Location', 'NorthEast')
-xlabel('Memory Footprint (kb)')
+xlabel('Memory Footprint (log2(kb))')
 ylabel('Mflops/sec')
 vline(log2(  35), 'k', 'L1')
 vline(log2( 256), 'k', 'L2')
 vline(log2(30700), 'k', 'L3')
-%saveas(gcf, 'permutationsPlot.png');  
+saveas(gcf, 'permutationsPlot.png');  
 
-%% Plot 2: BLK : Performance for best permutation (nmk?) when changing Block Size
+%% Plot 2: BLK : Performance for best permutation (mkn) when changing Block Size
 
 %x-axis: block size
 blockSize = [10 20 35 50 90 100 110 115 120 300 550 600 700 800 900 1000 1100 1200 1300 1400 1500 2000];
@@ -55,7 +55,7 @@ vline( 115, 'k', 'L2')
 vline(1100, 'k', 'L3')
 xlabel('Block Size (# of elements)')
 ylabel('Mflops/sec')
-%saveas(gcf, 'blockSizePlot.png');  
+saveas(gcf, 'blockSizePlot.png');  
 
 
 %% Plot 3: BLK : 
@@ -82,4 +82,4 @@ vline(log2( 256), 'k', 'L2')
 vline(log2(30700), 'k', 'L3')
 xlabel('Memory Footprint (log2(kb))')
 ylabel('Mflops/sec')
-%saveas(gcf, 'blockSizePlot.png'); 
+saveas(gcf, 'blockSizePlot2.png'); 
