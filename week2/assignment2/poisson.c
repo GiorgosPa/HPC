@@ -35,7 +35,7 @@ free_2d(double **A) {
     free(A);
 }
 
-
+/* Routine for copying content to u_old from u matrices without changing u */
 void copy(int N, double** A, double** B){
 	for(int i=0; i<N; i++){
 		for(int j=0; j<N; j++){
@@ -54,6 +54,8 @@ double frobenius_of_diff(int N, double** A, double** B){
 	return frob;
 }
 
+
+/* Jaccobi Method */
 void jaccobi(int N, int kmax, double delta, double** f, double** u){
 
 	int k = 0;
@@ -62,7 +64,7 @@ void jaccobi(int N, int kmax, double delta, double** f, double** u){
 	double d;
 
 	do {
-		copy(N, u, u_old);	
+		copy(N, u, u_old);
 
 		for(int i=1; i<N-1; i++){
 			for(int j=1; j<N-1; j++){
@@ -75,6 +77,38 @@ void jaccobi(int N, int kmax, double delta, double** f, double** u){
 		k++;
 	} while(d > THRESHOLD && k < kmax);
 
-	printf("# of iterations: %d\n", k);
+	printf("Jaccobi: # of iterations: %d\n", k);
 	free_2d(u_old);
+}
+
+
+/* Gauss-Seidel Method*/
+void gauss(int N, int kmax, double delta, double** f, double** u){
+
+	int k = 0;
+
+	double d;
+  double temp;
+
+	do {
+
+    d=0;
+
+		for(int i=1; i<N-1; i++){
+			for(int j=1; j<N-1; j++){
+        temp = u[i][j];
+
+				u[i][j] = 0.25 *(u[i-1][j] + u[i+1][j] + u[i][j-1] + u[i][j+1] + delta*delta*f[i][j]);
+
+        d = d + pow((u[i][j] - temp), 2);
+
+			}
+		}
+
+
+		k++;
+	} while(d > THRESHOLD && k < kmax);
+
+	printf("Gauss: # of iterations: %d\n", k);
+
 }
