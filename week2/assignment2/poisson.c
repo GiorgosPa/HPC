@@ -56,7 +56,7 @@ double frobenius_of_diff(int N, double** A, double** B){
 
 
 /* Jaccobi Method */
-void jaccobi(int N, int kmax, double delta, double** f, double** u){
+int jaccobi(int N, int kmax, double delta, double** f, double** u){
 
 	int k = 0;
 
@@ -79,16 +79,17 @@ void jaccobi(int N, int kmax, double delta, double** f, double** u){
 
 	printf("Jaccobi: # of iterations: %d\n", k);
 	free_2d(u_old);
+	return(k);
 }
 
 
 /* Gauss-Seidel Method*/
-void gauss(int N, int kmax, double delta, double** f, double** u){
+int gauss(int N, int kmax, double delta, double** f, double** u){
 
 	int k = 0;
 
 	double d;
-  double temp;
+  	double temp;
 
 	do {
 
@@ -110,5 +111,5 @@ void gauss(int N, int kmax, double delta, double** f, double** u){
 	} while(d > THRESHOLD && k < kmax);
 
 	printf("Gauss: # of iterations: %d\n", k);
-
+	return(k);
 }
