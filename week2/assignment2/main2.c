@@ -56,6 +56,25 @@ double discretize(int N, double low, double high, double* coords){
 }
 
 /* Routine for creating and filling up f and s */
+double initialize_test(int N, double** u, double** f, double** s){
+	double coords[N];
+	double step = discretize(N, -1, 1, coords);
+	double x,y;
+	for(int i=0; i<N; i++){
+		for(int j=0; j<N; j++){
+			x = coords[i];
+			y = coords[N-j - 1];
+			f[j][i] = testfunc(x, y);
+			s[j][i] = testsolution(x, y);
+		}
+	}
+
+	testboundaries(N, u);
+
+	return(step);
+}
+
+/* Routine for creating and filling up f */
 double initialize(int N, double** u, double** f){
 	double coords[N];
 	double step = discretize(N, -1, 1, coords);
@@ -65,7 +84,6 @@ double initialize(int N, double** u, double** f){
 			x = coords[i];
 			y = coords[N-j];
 			f[j][i] = func(x, y);
-			//s[j][i] = testsolution(x, y);
 		}
 	}
 
@@ -74,85 +92,131 @@ double initialize(int N, double** u, double** f){
 	return(step);
 }
 
+void print_matrix(int N, double** A){
+	for(int i=0; i<N; i++){
+	  for(int j=0; j<N; j++){
+	      printf("%f\t", A[i][j]);
+	  }
+	  printf("\n");
+	}
+}
 
 /* __________________________________________________________________________ */
 
 int main(int argc, char** argv){
 	int N;
 	int kmax;
-	char function_to_use;
-	bool print = false;
+	char* algorithm;
+	bool print = false, test = false;
+	int iterations;
+	double MFLOPS;
+	double** u;
+	double** f;
 
 	// command line argument sets method, grid dimensions, and max iterations
-  	if (argc < 4){
-		printf("Error: Wrong number of arguments\n");
+  	if (argc < 5){
+		printf("Error: Wrong number of arguments\n usage: %s algorithm N kmax maxiterations [print|p|test|t]\n", argv[0]);
 		return(1);
 	}
 
-	function_to_use = *argv[1];
+	algorithm = argv[1];
 	N = atoi(argv[2]);
 	kmax = atoi(argv[3]);
+	iterations = atoi(argv[4]);
 
-	if(argc == 5){
-		print = *argv[4] == 'T' || *argv[4] == 't';
+	if(argc > 5){
+		if (*argv[5] == 'P' || *argv[5] == 'p')
+			print = true;
+		if (*argv[5] == 'T' || *argv[5] == 't')
+			test = true;
 	}
-
 
 	double start_time, elapsed_time;
 	start_time = omp_get_wtime();
 
-	double** u = malloc_2d(N);
-	double** f = malloc_2d(N);
-	//double** s = malloc_2d(N);
-	double step = initialize(N, u, f);
-	int k;
+	
+	int k = 0;
 
-	if (!strcmp(function_to_use, "jac")) {
-		k = jaccobi(N, kmax, step, f, u);
-	} else if (!strcmp(function_to_use, "gaus")) {
-		k = gauss(N, kmax, step, f, u);
-	} else if (!strcmp(function_to_use, "jacomp")){
-		k = jaccobiOMP(N, kmax, step, f, u);
+	char jac[] = "jac";
+	char gaus[] = "gauss";
+	char jacomp[] = "jacomp";
+
+	int (*function_to_use)(int, int, double, double**, double**);
+
+	if (!strcmp(algorithm, jac)) {
+		function_to_use = &jaccobi;
+	} else if (!strcmp(algorithm, gaus)) {
+		function_to_use = &gauss;
+	} else if (!strcmp(algorithm, jacomp)){
+		function_to_use = &jaccobiOMP;
+	} else {
+		printf("Invalid algorithm choice, available choices [jac|jacomp|gauss]\n");
+		return(1);
 	}
 
+	if (test){
+		u = malloc_2d(N);
+		f = malloc_2d(N);
+		double** s = malloc_2d(N);
+		double** diff = malloc_2d(N);
+		double step = initialize_test(N, u, f, s);
+
+		function_to_use(N, kmax, step, f, u);
+		printf("F\n");
+		print_matrix(N, f);
+
+		for (int i=0; i<N; i++)
+			for (int j=0; j<N; j++)
+				diff[i][j] = s[i][j] - u[i][j];
+
+		printf("U\n");
+		print_matrix(N, u);
+
+		printf("S\n");
+		print_matrix(N, s);
+
+		printf("Diff\n");
+		print_matrix(N, diff);
+
+		free_2d(f);
+		free_2d(u);
+		free_2d(s);
+		free_2d(diff);
+		
+		return(0);
+	}
+
+	for (int iter=0; iter < iterations - 1; iter++){
+		u = malloc_2d(N);
+		f = malloc_2d(N);
+		double step = initialize(N, u, f);
+		k += function_to_use(N, kmax, step, f, u);
+		free_2d(u);
+		free_2d(f);
+	}
+	u = malloc_2d(N);
+	f = malloc_2d(N);
+	double step = initialize(N, u, f);
+	k += function_to_use(N, kmax, step, f, u);
+	
 	elapsed_time = omp_get_wtime() - start_time;
-
-	printf("Elapsed Time: %f secs\n", elapsed_time );
+	MFLOPS = 11*0.000001*(double)N*(double)N*(double)k/elapsed_time;
+	double time_per_iteration = elapsed_time / iterations;
 	double Memory = (double)N*(double)N*2*8/1000;
-	printf("Memory FootPrint: %f KB\n", Memory);
-	printf("Iteratipns/ sec: %f\n", (double)k/elapsed_time);
+	double iterations_per_sec = (double)k/elapsed_time;
 
+	printf("%f %f %f %f %f #%s \n", Memory, MFLOPS, iterations_per_sec, time_per_iteration, elapsed_time, algorithm);
 
 	if (print){
 		/* F Output */
 		printf("F\n");
-		for(int i=0; i<N; i++){
-		  for(int j=0; j<N; j++){
-		      printf("%f\t", f[i][j]);
-		  }
-		  printf("\n");
-		}
+		print_matrix(N, f);
 
 		/* U Output */
 		printf("U\n");
-		for(int i=0; i<N; i++){
-		  for(int j=0; j<N; j++){
-		      printf("%f\t", u[i][j]);
-		  }
-		  printf("\n");
-		}
-
-		/* S Output */
-		// printf("Solution\n");
-		// for(int i=0; i<N; i++){
-		// for(int j=0; j<N; j++){
-		//   printf("%f\t", s[i][j]);
-		// }
-		// printf("\n");
-		// }
-		free_2d(u);
-		free_2d(f);
+		print_matrix(N, u);
 	}
-
+	free_2d(u);
+	free_2d(f);
 	return(0);
 }
