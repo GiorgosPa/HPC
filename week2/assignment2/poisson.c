@@ -67,13 +67,25 @@ double frobenius_of_diff(int N, double** restrict A, double** restrict B){
 	return frob;
 }
 
+double frobenius_of_diff_OMP(int N, double** restrict A, double** restrict B){
+	double frob = 0;
+	int i,j;
+	#pragma omp parallel for private(i, j) collapse(2) reduction(+:frob)
+	for(i=0; i<N; i++){
+		for(j=0; j<N; j++){
+			frob += pow(B[i][j] - A[i][j], 2);
+		}
+	}
+	return frob;
+}
+
+
 /* Jaccobi Method */
 int jaccobi(int N, int kmax, double delta, double** restrict f, double** restrict u){
 
 	int k = 0;
 
 	double** u_old = malloc_2d(N);
-	double** u_original = u;
 	copy(N, u, u_old);
 	double d;
 
@@ -93,7 +105,7 @@ int jaccobi(int N, int kmax, double delta, double** restrict f, double** restric
 		k++;
 	} while(d > THRESHOLD && k < kmax);
 
-	if (!(u == u_original))
+	if (k % 2)
 	{
 		double** tmp = u_old;
 		u_old = u;
@@ -109,50 +121,36 @@ int jaccobi(int N, int kmax, double delta, double** restrict f, double** restric
 int jaccobiOMP(int N, int kmax, double delta, double** restrict f, double** restrict u){
 
 	int k = 0;
-
 	double** u_old = malloc_2d(N);
 	copyOMP(N, u, u_old);
-	int u_original = u;
 	double d;
 	int i,j;
-
-		printf("%d\n", u_original);
 	
-	#pragma omp parallel shared(N, u, u_old, kmax, d, k)
 	do {
-		#pragma omp single
-		printf("%d\n", k);
-		#pragma omp single
+		
 		d = 0;
 
-		#pragma omp for private(i,j) collapse(2) reduction(+:d)
+		#pragma omp parallel for private(i,j) collapse(2)
 		for(i=1; i<N-1; i++)
 			for(j=1; j<N-1; j++){
 				u[i][j] = 0.25 *(u_old[i-1][j] + u_old[i+1][j] + u_old[i][j-1] + u_old[i][j+1] + delta*delta*f[i][j]);
-				d += pow(u[i][j] - u_old[i][j], 2);
 			}
 		
-		#pragma omp single
-		{
-			double** tmp = u_old;
-			u_old = u;
-			u = tmp;
-			k++;
-		}
+		d = frobenius_of_diff_OMP(N, u, u_old);
+		double** tmp = u_old;
+		u_old = u;
+		u = tmp;
+		k++;
+		
+
 	} while(d > THRESHOLD && k < kmax);
 
-	printf("%d\n", u_old);
-		printf("%d\n", u);
-
-	if (!(u == u_original))
+	if (k % 2)
 	{
-		printf("%d\n", u);
-		printf("%d\n", u_original);
 		double** tmp = u_old;
 		u_old = u;
 		u = tmp;
 	}
-
 
 	free_2d(u_old);
 
