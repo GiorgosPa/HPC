@@ -82,6 +82,35 @@ int jaccobi(int N, int kmax, double delta, double** f, double** u){
 	return(k);
 }
 
+/* Jaccobi Method OMP */
+int jaccobiOMP(int N, int kmax, double delta, double** f, double** u){
+
+	int k = 0;
+
+	double** u_old = malloc_2d(N);
+	double d;
+
+	do {
+		#pragma omp parallel
+		{
+			copy(N, u, u_old);
+			#pragma omp for shared(N, u, u_old) private(i,j)
+			for(int i=1; i<N-1; i++){
+				for(int j=1; j<N-1; j++){
+					u[i][j] = 0.25 *(u_old[i-1][j] + u_old[i+1][j] + u_old[i][j-1] + u_old[i][j+1] + delta*delta*f[i][j]);
+				}
+			}
+			d = frobenius_of_diff(N, u, u_old);
+		} /* end parallel */
+		k++;
+	} while(d > THRESHOLD && k < kmax);
+
+	printf("Jaccobi: # of iterations: %d\n", k);
+	free_2d(u_old);
+	return(k);
+}
+
+
 
 /* Gauss-Seidel Method*/
 int gauss(int N, int kmax, double delta, double** f, double** u){

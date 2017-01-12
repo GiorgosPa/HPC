@@ -4,6 +4,7 @@
 #include <omp.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define M_PI 3.14159265358979323846
 
@@ -106,9 +107,12 @@ int main(int argc, char** argv){
 	double step = initialize(N, u, f);
 	int k;
 
-	switch (function_to_use) {
-		case 'j': k = jaccobi(N, kmax, step, f, u); break;
-		case 'g': k = gauss(N, kmax, step, f, u);   break;
+	if (!strcmp(function_to_use, "jac")) {
+		k = jaccobi(N, kmax, step, f, u);
+	} else if (!strcmp(function_to_use, "gaus")) {
+		k = gauss(N, kmax, step, f, u);
+	} else if (!strcmp(function_to_use, "jacomp")){
+		k = jaccobiOMP(N, kmax, step, f, u);
 	}
 
 	elapsed_time = omp_get_wtime() - start_time;
