@@ -1,0 +1,3 @@
+WARNING: Linux RH_UNK system "n-62-29-19" is not supported by the Performance tools.
+Creating experiment database collector.3642166.er (Process ID: 18526) ...
+MF:16000.000000 MFLOPS/sed:883.185341 iter/sec:80.289576  time/iter:1.256701 time:12.567011 #jacomp iterations:1009 

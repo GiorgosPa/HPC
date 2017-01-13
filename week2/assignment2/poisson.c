@@ -122,7 +122,7 @@ int jaccobiOMP(int N, int kmax, double delta, double** restrict f, double** rest
 
 	int k = 0;
 	double** u_old = malloc_2d(N);
-	copyOMP(N, u, u_old);
+	copy(N, u, u_old);
 	double d;
 	int i,j;
 	
@@ -130,13 +130,13 @@ int jaccobiOMP(int N, int kmax, double delta, double** restrict f, double** rest
 		
 		d = 0;
 
-		#pragma omp parallel for private(i,j) collapse(2)
+		#pragma omp parallel for private(i,j) /* collapse(2) */ 
 		for(i=1; i<N-1; i++)
 			for(j=1; j<N-1; j++){
 				u[i][j] = 0.25 *(u_old[i-1][j] + u_old[i+1][j] + u_old[i][j-1] + u_old[i][j+1] + delta*delta*f[i][j]);
 			}
 		
-		d = frobenius_of_diff_OMP(N, u, u_old);
+		d = frobenius_of_diff(N, u, u_old);
 		double** tmp = u_old;
 		u_old = u;
 		u = tmp;

@@ -205,7 +205,7 @@ int main(int argc, char** argv){
 	double Memory = (double)N*(double)N*2*8/1000;
 	double iterations_per_sec = (double)k/elapsed_time;
 
-	printf("%f %f %f %f %f #%s \n", Memory, MFLOPS, iterations_per_sec, time_per_iteration, elapsed_time, algorithm);
+	printf("MF:%f MFLOPS/sed:%f iter/sec:%f  time/iter:%f time:%f #%s iterations:%d \n", Memory, MFLOPS, iterations_per_sec, time_per_iteration, elapsed_time, algorithm, k);
 
 	if (print){
 		/* F Output */
