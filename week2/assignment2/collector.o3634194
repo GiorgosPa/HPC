@@ -1,9 +1,0 @@
-WARNING: Linux RH_UNK system "n-62-29-19" is not supported by the Performance tools.
-Creating experiment database collector.3634194.er (Process ID: 13940) ...
-160.000000 3664.391066 33312.646056 0.030019 0.300186 #jac 
-WARNING: Linux RH_UNK system "n-62-29-19" is not supported by the Performance tools.
-Creating experiment database collector.3634195.er (Process ID: 14094) ...
-160.000000 6134.977373 55772.521571 0.017930 0.179300 #jacomp 
-WARNING: Linux RH_UNK system "n-62-29-19" is not supported by the Performance tools.
-Creating experiment database collector.3634196.er (Process ID: 14251) ...
-160.000000 1704.080294 15491.639038 0.060917 0.609167 #gauss 
