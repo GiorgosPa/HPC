@@ -17,8 +17,8 @@ all:
 	$(MAKE) clean
 	$(MAKE) driver
 
-driver: poisson.o main2.o
-	$(CC) $(CFLAGS) -o driver main2.o poisson.o -lm 
+driver: poisson.o main.o
+	$(CC) $(CFLAGS) -o driver main.o poisson.o -lm 
 
 clean:
 	@rm -f *.o poisson

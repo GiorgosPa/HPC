@@ -141,6 +141,8 @@ int main(int argc, char** argv){
 	char jac[] = "jac";
 	char gaus[] = "gauss";
 	char jacomp[] = "jacomp";
+	char jacompsimple[] = "jacompsimple";
+	char jacompdatarace[] = "jacompdatarace";
 
 	int (*function_to_use)(int, int, double, double**, double**);
 
@@ -150,6 +152,10 @@ int main(int argc, char** argv){
 		function_to_use = &gauss;
 	} else if (!strcmp(algorithm, jacomp)){
 		function_to_use = &jaccobiOMP;
+	} else if (!strcmp(algorithm, jacompsimple)){
+		function_to_use = &jaccobiOMP_simple;
+	} else if (!strcmp(algorithm, jacompdatarace)){
+		function_to_use = &jaccobiOMP_datarace;
 	} else {
 		printf("Invalid algorithm choice, available choices [jac|jacomp|gauss]\n");
 		return(1);
