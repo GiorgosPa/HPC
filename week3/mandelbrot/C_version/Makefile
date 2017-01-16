@@ -32,6 +32,8 @@ $(TARGET): $(OBJS)
 clean:
 	@/bin/rm -f $(TARGET) $(OBJS)
 
+$(PNGWRITERLIB):
+	@cd pngwriter/src && $(MAKE)
 
 all: $(PNGWRITERLIB) $(TARGET)
 
