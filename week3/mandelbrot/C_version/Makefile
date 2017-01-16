@@ -18,7 +18,7 @@ XLIBS	=
 
 PNGWRITERPATH = pngwriter
 # ARCH	      = $(shell uname -p)
-PNGWRTLPATH   = $(PNGWRITERPATH)/lib/$(ARCH)
+PNGWRTLPATH   = $(PNGWRITERPATH)/lib/x86_64
 PNGWRTIPATH   = $(PNGWRITERPATH)/include
 PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
 
