@@ -8,7 +8,7 @@ ARCH  = -arch=sm_30
 OMP   = -fopenmp
 
 CXX	= nvcc
-CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS)
+CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS) -I $(PNGWRTIPATH)
 
 CUDA_PATH ?= /appl/cuda/8.0
 INCLUDES = -I$(CUDA_PATH)/include -I$(CUDA_PATH)/samples/common/inc
