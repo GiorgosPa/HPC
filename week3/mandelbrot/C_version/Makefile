@@ -22,8 +22,10 @@ PNGWRTLPATH   = $(PNGWRITERPATH)/lib/x86_64
 PNGWRTIPATH   = $(PNGWRITERPATH)/include
 PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
 
+LIBS	= -L $(PNGWRTLPATH) -lpngwriter -lpng
+
 $(TARGET): $(OBJS)
-	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(XLIBS)
+	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(LIBS)
 
 .SUFFIXES: .cu
 .cu.o:
