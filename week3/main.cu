@@ -14,5 +14,6 @@ void hello(){
 
 int main(){
     hello<<<16,16>>>();
+    cudaDeviceSynchronize();
     return(0);
 }
