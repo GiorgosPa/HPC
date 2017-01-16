@@ -8,7 +8,7 @@ void mandel(int disp_width, int disp_height, int *array, int max_iter) {
 
     double  scale_real, scale_imag;
     double  x, y, u, v, u2, v2;
-    int     i, j, iter;
+    int     iter;
 
     scale_real = 3.5 / (double)disp_width;
     scale_imag = 3.5 / (double)disp_height;
@@ -78,7 +78,7 @@ main(int argc, char *argv[]) {
 
     mandel<<<blocks, threads>>>(width, height, d_image, max_iter);
 
-    cudaMemcpy(image, d_image, width * height * sizeof(int));
+    cudaMemcpyDefault(image, d_image, width * height * sizeof(int), cudaMemcpyDefault);
     writepng("mandelbrot.png", image, width, height);
 
     return(0);
