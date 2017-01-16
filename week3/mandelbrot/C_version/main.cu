@@ -31,6 +31,7 @@ main(int argc, char *argv[]) {
 
     mandel<<<blocks, threads>>>(width, height, d_image, max_iter);
 
+    checkCudaErrors(cudaDeviceSynchronize());
     cudaMemcpy(image, d_image, width * height * sizeof(int), cudaMemcpyDeviceToHost);
     writepng("mandelbrot.png", image, width, height);
 
