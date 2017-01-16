@@ -78,7 +78,7 @@ main(int argc, char *argv[]) {
 
     mandel<<<blocks, threads>>>(width, height, d_image, max_iter);
 
-    cudaMemcpyDefault(image, d_image, width * height * sizeof(int), cudaMemcpyDefault);
+    cudaMemcpyDeviceToHost(image, d_image, width * height * sizeof(int), cudaMemcpyDeviceToHost);
     writepng("mandelbrot.png", image, width, height);
 
     return(0);
