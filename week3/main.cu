@@ -13,6 +13,6 @@ void hello(){
 
 
 int main(){
-    hello<<<16,16>>>()
+    hello<<<16,16>>>();
     return(0);
 }
