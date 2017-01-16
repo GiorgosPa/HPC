@@ -7,6 +7,14 @@ XOPTS = -G -Xptxas=-v
 ARCH  = -arch=sm_30
 OMP   = -fopenmp
 
+PNGWRITERPATH = pngwriter
+# ARCH	      = $(shell uname -p)
+PNGWRTLPATH   = $(PNGWRITERPATH)/lib/x86_64
+PNGWRTIPATH   = $(PNGWRITERPATH)/include
+PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
+
+LIBS	= -L $(PNGWRTLPATH) -lpngwriter -lpng
+
 CXX	= nvcc
 CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS) -I $(PNGWRTIPATH)
 
@@ -16,13 +24,6 @@ INCLUDES = -I$(CUDA_PATH)/include -I$(CUDA_PATH)/samples/common/inc
 SOFLAGS =
 XLIBS	=
 
-PNGWRITERPATH = pngwriter
-# ARCH	      = $(shell uname -p)
-PNGWRTLPATH   = $(PNGWRITERPATH)/lib/x86_64
-PNGWRTIPATH   = $(PNGWRITERPATH)/include
-PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
-
-LIBS	= -L $(PNGWRTLPATH) -lpngwriter -lpng
 
 $(TARGET): $(OBJS)
 	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(LIBS)
