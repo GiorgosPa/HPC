@@ -17,7 +17,7 @@ SOFLAGS =
 XLIBS	=
 
 PNGWRITERPATH = pngwriter
-ARCH	      = $(shell uname -p)
+# ARCH	      = $(shell uname -p)
 PNGWRTLPATH   = $(PNGWRITERPATH)/lib/$(ARCH)
 PNGWRTIPATH   = $(PNGWRITERPATH)/include
 PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
