@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <helper_cuda.h>
 
 __global__
 void hello(){
@@ -21,6 +22,6 @@ void hello(){
 
 int main(){
     hello<<<16,16>>>();
-    cudaDeviceSynchronize();
+    checkCudaErrors(cudaDeviceSynchronize());
     return(0);
 }
