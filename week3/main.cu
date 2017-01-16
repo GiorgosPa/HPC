@@ -9,7 +9,7 @@ void hello(){
     gthread = block * threads_per_block + thread;
     blocks = gridDim.x;
     printf("Hello world! I’m thread %d out of %d in block %d. My global thread id is %d out of %d\n",
-     thread, threads_per_block, block, gthread, threads_per_block*);
+     thread, threads_per_block, block, gthread, threads_per_block*blocks);
 }
 
 
