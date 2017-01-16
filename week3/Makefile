@@ -1,6 +1,6 @@
 TARGET = helloworld
-SRCS	 = 
-OBJS	 = helloworld.o
+SRCS	 =
+OBJS	 = main.o
 
 OPT	= -g
 PIC	=
@@ -9,20 +9,20 @@ ARCH  = -arch=sm_30
 OMP   = -fopenmp
 
 CXX	= nvcc
-CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS) 
+CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS)
 
 CUDA_PATH ?= /appl/cuda/8.0
 INCLUDES = -I$(CUDA_PATH)/include -I$(CUDA_PATH)/samples/common/inc
 
 SOFLAGS =
-XLIBS	= 
+XLIBS	=
 
 $(TARGET): $(OBJS)
-	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(XLIBS) 
+	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(XLIBS)
 
 .SUFFIXES: .cu
 .cu.o:
 	$(CXX) -o $*.o -c $*.cu $(CXXFLAGS) $(SOFLAGS) $(INCLUDES)
 
 clean:
-	@/bin/rm -f $(TARGET) $(OBJS) 
+	@/bin/rm -f $(TARGET) $(OBJS)
