@@ -16,6 +16,12 @@ INCLUDES = -I$(CUDA_PATH)/include -I$(CUDA_PATH)/samples/common/inc
 SOFLAGS =
 XLIBS	=
 
+PNGWRITERPATH = pngwriter
+ARCH	      = $(shell uname -p)
+PNGWRTLPATH   = $(PNGWRITERPATH)/lib/$(ARCH)
+PNGWRTIPATH   = $(PNGWRITERPATH)/include
+PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
+
 $(TARGET): $(OBJS)
 	$(CXX) -o $@ $(CXXFLAGS) $(SOFLAGS) $(INCLUDES) $^ $(XLIBS)
 
@@ -27,6 +33,7 @@ clean:
 	@/bin/rm -f $(TARGET) $(OBJS)
 
 
+all: $(PNGWRITERLIB) $(TARGET)
 
 # OPT	= -g -fast
 # ISA	=
