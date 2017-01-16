@@ -43,7 +43,7 @@ void mandel(int disp_width, int disp_height, int *array, int max_iter) {
             iter = iter == max_iter ? 0 : iter;
 
             //array[i*disp_height + j] = iter;
-            array[tdx*disp_height + tdy] = iter;
+            array[tidx*disp_height + tidy] = iter;
 
 //      }
 //    }
