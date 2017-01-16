@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "writepng.h"
 #include "mandel.h"
+#include <helper_cuda.h>
 
 
 int
