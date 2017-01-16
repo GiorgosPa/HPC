@@ -72,7 +72,7 @@ main(int argc, char *argv[]) {
        fprintf(stderr, "memory allocation failed!\n");
        return(1);
     }
-    d_image = cudaMalloc(width * height * sizeof(int));
+    cudaMalloc(d_image, width * height * sizeof(int));
     dim3 blocks = dim3(64,64);
     dim3 threads = dim3(64,64);
 
