@@ -30,7 +30,7 @@ else
 FT_ARG = `freetype-config --cflags` `freetype-config --libs`
 endif
 
-CXX=cc
+CXX=gcc
 
 CXXFLAGS= -O3 #-Wall -Wno-deprecated $(FT_ARG)
 
