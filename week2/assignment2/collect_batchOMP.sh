@@ -13,16 +13,14 @@
 #
 #PBS -N collector
 #PBS -q hpcintro
-#PBS -l nodes=1:ppn=4
+#PBS -l nodes=1:ppn=20
 #PBS -l walltime=10:00
 
 cd $PBS_O_WORKDIR
 
-module load studio
 
 # define the executable here
 #
-EXECUTABLE=driver
 
 # define any command line options for your executable here
 # EXECOPTS=
@@ -40,10 +38,46 @@ export OMP_WAIT_POLICY=active
 
 
 # experiment name 
-#
-JID=`echo ${PBS_JOBID%.*}`
-EXPOUT="$PBS_JOBNAME.${JID}.er"
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
 
-# start the collect command with the above settings
-collect -o $EXPOUT ./$EXECUTABLE jacomp 1000 1000 10
 
+export OMP_NUM_THREADS=2
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=4
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=6
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=8
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=10
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=12
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=14
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=16
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=18
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
+
+export OMP_NUM_THREADS=20
+./driver jacompsimple 160 1000 100
+./driver jacomp 160 1000 100
