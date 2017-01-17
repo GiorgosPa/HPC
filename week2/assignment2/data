@@ -1,0 +1,135 @@
+PLOT: MFLOPS/sec -VS- MEMORY FOOTPRINT    (fixed threads: find optimal #threads)
+
+threads    algorithm     N    stopping cri   iter MFLOPS/sec  time  iter/sec iter
+2           jacomp     10      1000          10      
+2           jacomp     50      1000          10
+2           jacomp     100     1000          10
+2           jacomp     500     1000          10
+2           jacomp     1000    1000          10      
+
+2           jac        10      1000          10     1220   0.000172    1109573  191     
+2           jac        50      1000          10     2646   0.0482      96245    4639
+2           jac        100     1000          10     2842   0.3869      25841    10000
+2           jac        500     1000          10     2815   9.7677      1023     ''
+2           jac        1000    1000          10     2701   40.71	   245.6    ''
+
+2           gauss      10      1000          10     1213     0.000096   1103216 106    
+2           gauss      50      1000          10     1552     0.044082   56463  2489
+2           gauss      100     1000          10     1539     0.675      13992  9445     
+2           gauss      500     1000          10     1467     18.75      533.5  10000
+2           gauss      1000    1000          10     1454     75.62      132.25 ""
+
+2           mandel     10      1000          10      
+2           mandel     50      1000          10
+2           mandel     100     1000          10
+2           mandel     500     1000          10
+2           mandel     1000    1000          10      
+
+2           mandelOMP  10      1000          10      
+2           mandelOMP  50      1000          10
+2           mandelOMP  100     1000          10
+2           mandelOMP  500     1000          10
+2           mandelOMP  1000    1000          10     
+
+
+PLOT: SPEED UP  -VS-  # OF THREADS         (fixed N: Memory Footprint)
+
+Version 1: Simple (without collapse)                   TIME
+1           jacomp     1000    1000          10     11.637861  on the 2nd try 4.6sec
+1           jacomp     100     1000          10     00.416476
+1           jacomp     100     1000          100    00.777861 as batch jobs (above too)
+
+1           jacomp     1000    1000          10     04.571061 
+1           jacomp     100     1000          10     00.413081
+1           jacomp     100     1000          100    00.697538 as local jobs (above too)
+
+2           jacomp     100     1000          10     00.533988
+4           jacomp     100     1000          10     00.424004
+6           jacomp     100     1000          10     00.522106
+8           jacomp     100     1000          10     00.416230 
+10          jacomp     100     1000          10     00.523300 
+12          jacomp     100     1000          10     00.514488
+14          jacomp     100     1000          10     00.448200
+16          jacomp     100     1000          10     00.516751
+18          jacomp     100     1000          10     00.509590
+20          jacomp     100     1000          10    
+
+Version 2: Simple (with collapse)
+1           jacomp     100     1000          10      
+2           jacomp     100     1000          10      
+4           jacomp     100     1000          10      
+6           jacomp     100     1000          10      
+8           jacomp     20      1000          10      
+10          jacomp     20      1000          10      
+12          jacomp     20      1000          10      
+14          jacomp     20      1000          10      
+16          jacomp     20      1000          10      
+18          jacomp     20      1000          10      
+20          jacomp     20      1000          10       
+
+Version 3:  ADD-ON = (with copyOMP)
+1           jacomp     100     1000          10      
+2           jacomp     100     1000          10      
+4           jacomp     100     1000          10      
+6           jacomp     100     1000          10      
+8           jacomp     20      1000          10      
+10          jacomp     20      1000          10      
+12          jacomp     20      1000          10      
+14          jacomp     20      1000          10      
+16          jacomp     20      1000          10      
+18          jacomp     20      1000          10      
+20          jacomp     20      1000          10       
+
+Version 4:  ADD_ON = (with forbeniousOMP)
+1           jacomp     100     1000          10      
+2           jacomp     100     1000          10      
+4           jacomp     100     1000          10      
+6           jacomp     100     1000          10      
+8           jacomp     20      1000          10      
+10          jacomp     20      1000          10      
+12          jacomp     20      1000          10      
+14          jacomp     20      1000          10      
+16          jacomp     20      1000          10      
+18          jacomp     20      1000          10      
+20          jacomp     20      1000          10       
+
+SHOULD WE INCLUDE A VERSION 5 WITH DYNAMIC SCHEDULE? 
+
+
+1st: We tested version 1 as: $ OMP_WAIT_POLICY=active OMP_NUM_THREADS=4 collect \
+     ./driver jacomp 1000 1000 10
+
+     and found many implicit barriers (in red: see screenshot)
+     WALL TIME =  58.34
+     MFLOPS/sec=  1885
+     iter/sec  =  171.39
+
+2nd: We tested version 2 (with collapse), and the number of implicit barriers  
+     dropped substantially. However, what dafak is going on with the first thread?
+     WALL TIME =  38.04
+     MFLOPS/sec=  2891
+     iter/sec  =  262.88
+
+3rd: We tested version 3 (with copyOMP), now we have more implicit barriers and some 'sleep' time (?). 
+	WALL TIME =  92.42
+    MFLOPS/sec=  1190
+    iter/sec  =  108.20
+
+4th: We tested version 4 (with forbOMP), very few implicit barriers; work load 		    seems well distributed amongst all 4 threads. No sleep time this time. However, 
+there's an implicit barrier block at second 20. Can we eliminate this?
+run1:	WALL TIME =  26.45
+    	MFLOPS/sec=  4158
+    	iter/sec  =  378.05    
+
+run1:	WALL TIME =  28.15
+    	MFLOPS/sec=  3907.39
+    	iter/sec  =  355.22    
+
+5th: We test same version as 4, but we run it with a dynamic schedule as:  
+    $ OMP_WAIT_POLICY=active OMP_NUM_THREADS=4 OMP_SCHEDULE=dynamic,50 collect \
+     ./driver jacomp 1000 1000 10    
+    WALL TIME =  25.36
+    MFLOPS/sec=  4336
+    iter/sec  =  394.26  
+
+
