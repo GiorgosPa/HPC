@@ -10,19 +10,16 @@ void mandel(int *disp_width, int *disp_height, int *array, int *max_iter) {
     scale_imag = 3.5 / (double)*disp_height;
 
     int tidx = blockIdx.x * blockDim.x + threadIdx.x;
-    printf("thread %d\n", tidx);
-    //int tidy = blockIdx.y * blockDim.y + threadIdx.y;
-    //if ((tidx >= disp_width) || (tidy >= disp_height))
-    //   return;
+    int tidy = blockIdx.y * blockDim.y + threadIdx.y;
 
     //for(i = 0; i < disp_width; i++) {
 
         x = ((double)tidx * scale_real) - 2.25;
         //x = ((double)i * scale_real) - 2.25;
         
-      for(j = 0; j < *disp_height; j++) {
-            //y = ((double)tidy * scale_imag) - 1.75;
-            y = ((double)j * scale_imag) - 1.75;
+     // for(j = 0; j < *disp_height; j++) {
+            y = ((double)tidy * scale_imag) - 1.75;
+            //y = ((double)j * scale_imag) - 1.75;
 
             u    = 0.0;
             v    = 0.0;
@@ -40,9 +37,9 @@ void mandel(int *disp_width, int *disp_height, int *array, int *max_iter) {
 
             // if we exceed max_iter, reset to zero
             iter = iter == *max_iter ? 0 : iter;
-            array[i*(*disp_height)+ j] = iter;
-            //array[tidx*disp_height + tidy] = iter;
-
-      }
+            // array[i*(*disp_height)+ j] = iter;
+            array[tidx*(*disp_height) + tidy] = iter;
+	    //array[tidx*(*disp_height) + j] = iter;
+      //}
     //}
 }
