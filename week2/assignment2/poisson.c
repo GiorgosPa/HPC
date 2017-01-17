@@ -132,6 +132,8 @@ int jaccobi(int N, int kmax, double delta, double** restrict f, double** restric
 /* Jaccobi Method OMP */
 int jaccobiOMP(int N, int kmax, double delta, double** restrict f, double** restrict u){
 
+	if (N < 50)
+		return jaccobi(N, kmax, delta, f, u);
 	int k = 0;
 	double** u_old = malloc_2d(N);
 	copyOMP(N, u, u_old);
