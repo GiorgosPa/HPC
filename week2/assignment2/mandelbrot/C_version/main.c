@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mandel.h"
-#include "writepng.h"
+#include <omp.h>
 
 
 
@@ -25,9 +25,14 @@ main(int argc, char *argv[]) {
        return(1);
     }
 
+    double start_time, elapsed_time;
+    start_time = omp_get_wtime();
     mandel(width, height, image, max_iter);
+    elapsed_time = omp_get_wtime() - start_time;
 
-    writepng("mandelbrot.png", image, width, height);
+    printf("Time (secs) %d\n", elapsed_time);
+
+    //writepng("mandelbrot.png", image, width, height);
 
     return(0);
 }

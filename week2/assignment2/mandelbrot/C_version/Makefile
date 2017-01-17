@@ -1,9 +1,14 @@
 TARGET	= mandelbrot
-OBJS	= main.o mandel.o writepng.o 
+OBJS	= main.o mandelOMP.o  
 
 OPT	= -g -fast
 ISA	= 
 PARA	= 
+OMPSUN = -xopenmp
+CCSUN = suncc
+OMP = $(OMPSUN)
+WARN = 
+
 
 PNGWRITERPATH = pngwriter
 ARCH	      = $(shell uname -p)
@@ -11,11 +16,12 @@ PNGWRTLPATH   = $(PNGWRITERPATH)/lib/$(ARCH)
 PNGWRTIPATH   = $(PNGWRITERPATH)/include
 PNGWRITERLIB  = $(PNGWRTLPATH)/libpngwriter.a
 
-CCC	= CC
+CCC	= suncc
 CXX	= CC
 CXXFLAGS= -I $(PNGWRTIPATH)
+CFLAGS = -std=c99 $(OMP) $(OPT) $(WARN)
 
-CFLAGS	= $(OPT) $(ISA) $(PARA) $(XOPT)
+# CFLAGS	= $(OPT) $(ISA) $(PARA) $(XOPT)
 
 F90C  	= f90
 
@@ -42,5 +48,4 @@ realclean: clean
 # dependencies
 #
 main.o  : main.c mandel.h
-mandel.o: mandel.c
-writepng.o: writepng.h writepng.cc
+mandelOMP.o: mandelOMP.c
