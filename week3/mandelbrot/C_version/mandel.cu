@@ -12,6 +12,8 @@ void mandel(int *disp_width, int *disp_height, int *array, int *max_iter) {
     int tidx = blockIdx.x * blockDim.x + threadIdx.x;
     int tidy = blockIdx.y * blockDim.y + threadIdx.y;
 
+    if (tidx >= *disp_width || tidy >= *disp_height)
+	return;
     //for(i = 0; i < disp_width; i++) {
 
         x = ((double)tidx * scale_real) - 2.25;
