@@ -4,11 +4,11 @@
 
 
 
-//Naive version: One thread per element in C
+//Naive version: Each thread computes exactly 2 threads of matrix C
 __global__
-void gpu2( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
+void gpu3( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
 
-    int i = blockIdx.y*blockDim.y+threadIdx.y;  //row thead id
+    int i = blockIdx.y*2*blockDim.y+threadIdx.y;  //row thead id * 2
     int j = blockIdx.x*blockDim.x+threadIdx.x;  //column thread id
     double temp = 0;
 
@@ -24,7 +24,7 @@ void gpu2( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
 
 extern "C" {
     #include <cblas.h>
-void matmult_gpu2(int m, int n, int k, double* h_A, double* h_B, double* h_C){
+void matmult_gpu3(int m, int n, int k, double* h_A, double* h_B, double* h_C){
 
           double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
           double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
@@ -47,7 +47,7 @@ if (m*n <= 1024) {
 
 
  // Kernel launch
- gpu2<<<NUM_BLOCKS, NUM_THREADS>>>(m, n, k, d_A, d_B, d_C);
+ gpu3<<<NUM_BLOCKS, NUM_THREADS>>>(m, n, k, d_A, d_B, d_C);
  checkCudaErrors(cudaDeviceSynchronize());
 
  // Transfer results from device to host

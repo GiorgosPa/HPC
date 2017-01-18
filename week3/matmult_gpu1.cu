@@ -4,15 +4,21 @@
 //Sequential version: One thread does it all. AKA--> Launch configuration <<<1,1,>>>
 __global__
 void gpu1(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
+    double temp = 0;
     for (int i = 0; i < m; i++){
         for (int j = 0; j < n; j++){
             for (int rc = 0; rc < k; rc++){
                 //C[i][j] += A[i][rc] * B[rc][j];
-                d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
+                //temp += d_A[i*k + rc] * d_B[rc*n + j]; //original
+                temp += d_A[i*k + rc] * d_B[rc*n + j];
+
             }
+            //d_C[i*n + j] = temp; //original
+            d_C[i*n + j] = temp;
         }
     }
 }
+
 
 extern "C" {
     #include <cblas.h>
