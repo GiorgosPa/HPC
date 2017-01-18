@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <helper_cuda.h>
-#include "atmoicADD.h"
-extern "C" {
-    #include <cblas.h>
+
 
 
 
@@ -15,15 +13,16 @@ void gpu2( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
 
     if (i<m && j<n) {
         for (int rc = 0; rc < k; rc++){
-            //d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
-            atomicADD( &d_C[i*n + j] , d_A[i*k + rc] * d_B[rc*n + j] );
+            d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
+            //atomicADD( &d_C[i*n + j] , d_A[i*k + rc] * d_B[rc*n + j] );
         }
     }
 
 }
 
-
-void matmult_gpu2(int m, int n, int k, double* h_A, double* h_B, double* h_C, ){
+extern "C" {
+    #include <cblas.h>
+void matmult_gpu2(int m, int n, int k, double* h_A, double* h_B, double* h_C){
 
           double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
           double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
@@ -47,7 +46,7 @@ NUM_BLOCKS = dim3(m/32, n/32, 1);
 NUM_THREADS =  dim3(32, 32, 1);
 
  // Kernel launch
- matmult_gpu2<<<NUM_BLOCKS, NUM_THREADS>>>(m, n, k, d_A, d_B, d_C);
+ gpu2<<<NUM_BLOCKS, NUM_THREADS>>>(m, n, k, d_A, d_B, d_C);
  checkCudaErrors(cudaDeviceSynchronize());
 
  // Transfer results from device to host
