@@ -4,9 +4,10 @@
 //Sequential version: One thread does it all. AKA--> Launch configuration <<<1,1,>>>
 __global__
 void gpu1(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
-    double temp = 0;
+    double temp;
     for (int i = 0; i < m; i++){
         for (int j = 0; j < n; j++){
+                 temp = 0;
             for (int rc = 0; rc < k; rc++){
                 //C[i][j] += A[i][rc] * B[rc][j];
                 //temp += d_A[i*k + rc] * d_B[rc*n + j]; //original
@@ -23,14 +24,13 @@ void gpu1(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
 extern "C" {
     #include <cblas.h>
 void matmult_gpu1(int m, int n, int k, double* h_A, double* h_B, double* h_C ){
-
+          cudaSetDevice(3);
           double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
           double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
           double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
           
 
 // Transfer data from host to device
-cudaMemcpy(d_C, h_C, m*n*sizeof(double), cudaMemcpyHostToDevice);
 cudaMemcpy(d_A, h_A, m*k*sizeof(double), cudaMemcpyHostToDevice);
 cudaMemcpy(d_B, h_B, k*n*sizeof(double), cudaMemcpyHostToDevice);
 

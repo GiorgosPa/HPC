@@ -37,7 +37,7 @@ cudaMemcpy(d_A, h_A, m*k*sizeof(double), cudaMemcpyHostToDevice);
 cudaMemcpy(d_B, h_B, k*n*sizeof(double), cudaMemcpyHostToDevice);
 
 //Q: IS THIS OKAY? one thread per element in d_C(mxn)
-dim3 NUM_BLOCKS = dim3(m/32, n/32, 1);
+dim3 NUM_BLOCKS = dim3(m/32 + 1, n/32 + 1, 1);
 dim3 NUM_THREADS =  dim3(32, 32, 1);
 
 if (m*n <= 1024) {
