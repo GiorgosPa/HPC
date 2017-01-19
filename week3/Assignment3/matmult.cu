@@ -20,10 +20,10 @@ void gpu1(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
 __global__
 void gpu2( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
 
-    int j = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
-    int i = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
+    int i = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
+    int j = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
     
-    if (i<m && j<n) {
+    if (j<m && i<n) {
         d_C[i*n + j] = 0.0;
         for (int rc = 0; rc < k; rc++){
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
@@ -34,18 +34,18 @@ void gpu2( int m, int n, int k, double*  d_A, double* d_B, double* d_C) {
 //one thread every 2 elements of C
 __global__
 void gpu3(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
-    int j = blockIdx.y*2*blockDim.y+threadIdx.y;  //column thead id
-    int i = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
-    int j2 = j + blockDim.y;
+    int i = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
+    int j = blockIdx.x*2*blockDim.x+threadIdx.x;  //row thread id
+    int j2 = j + blockDim.x;
 
-    if (i<m && j<n && j2 < n) {
+    if (j<m && i<n && j2 < m) {
         d_C[i*n + j2] = 0.0;
         d_C[i*n + j] = 0.0;
         for (int rc = 0; rc < k; rc++){
             d_C[i*n + j2] += d_A[i*k + rc] * d_B[rc*n + j2];
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
         }
-    } else if (i<m && j<n) {
+    } else if (j<m && i<n) {
         d_C[i*n + j] = 0.0;
         for (int rc = 0; rc < k; rc++){
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
@@ -56,13 +56,13 @@ void gpu3(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
 //one thread every 4 elements of C
 __global__
 void gpu4(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
-    int j = blockIdx.y*4*blockDim.y+threadIdx.y;  //column thead id
-    int i = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
-    int j2 = j + blockDim.y;
-    int j3 = j2 + blockDim.y;
-    int j4 = j3 + blockDim.y;
+    int i = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
+    int j = blockIdx.x*4*blockDim.x+threadIdx.x;  //row thread id
+    int j2 = j + blockDim.x;
+    int j3 = j2 + blockDim.x;
+    int j4 = j3 + blockDim.x;
 
-    if (i<m && j<n && j2 < n && j3 < n && j4 < n) {
+    if (j<m && i<n && j2 < m && j3 < m && j4 < m) {
         d_C[i*n + j4] = 0.0;
         d_C[i*n + j3] = 0.0;
         d_C[i*n + j2] = 0.0;
@@ -73,7 +73,7 @@ void gpu4(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
             d_C[i*n + j2] += d_A[i*k + rc] * d_B[rc*n + j2];
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
         }
-    } else if (i<m && j<n && j3 < n) {
+    } else if (j<m && i<n && j3 < m) {
         d_C[i*n + j3] = 0.0;
         d_C[i*n + j2] = 0.0;
         d_C[i*n + j] = 0.0;
@@ -82,14 +82,14 @@ void gpu4(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
             d_C[i*n + j2] += d_A[i*k + rc] * d_B[rc*n + j2];
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
         }
-    } else if (i<m && j<n && j2 < n) {
+    } else if (j<m && i<n && j2 < m) {
         d_C[i*n + j2] = 0.0;
         d_C[i*n + j] = 0.0;
         for (int rc = 0; rc < k; rc++){
             d_C[i*n + j2] += d_A[i*k + rc] * d_B[rc*n + j2];
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
         }
-    } else if (i<m && j<n) {
+    } else if (j<m && i<n) {
         d_C[i*n + j] = 0.0;
         for (int rc = 0; rc < k; rc++){
             d_C[i*n + j] += d_A[i*k + rc] * d_B[rc*n + j];
@@ -103,23 +103,23 @@ void gpu5(int m, int n, int k, double* d_A, double* d_B, double* d_C ){
     __shared__ double A[BLOCK_SIZE][BLOCK_SIZE];
     __shared__ double B[BLOCK_SIZE][BLOCK_SIZE];
     __shared__ double C[BLOCK_SIZE][BLOCK_SIZE];
-    int j = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
-    int i = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
+    int i = blockIdx.y*blockDim.y+threadIdx.y;  //column thead id
+    int j = blockIdx.x*blockDim.x+threadIdx.x;  //row thread id
 
     C[threadIdx.x][threadIdx.y] = 0.0;
     for (int rc = 0; rc < k; rc+=BLOCK_SIZE){
 
-        A[threadIdx.x][threadIdx.y] = d_A[i*k + rc + threadIdx.y];
-        B[threadIdx.x][threadIdx.y] = d_B[(rc + threadIdx.x)*n + j];
+        A[threadIdx.y][threadIdx.x] = d_A[i*k + rc + threadIdx.x];
+        B[threadIdx.y][threadIdx.x] = d_B[(rc + threadIdx.y)*n + j];
         
         __syncthreads();
 
         for (int rc2 = 0; rc2 < BLOCK_SIZE; rc2++){
-            C[threadIdx.x][threadIdx.y] += A[threadIdx.x][rc2] * B[rc2][threadIdx.y];
+            C[threadIdx.y][threadIdx.x] += A[threadIdx.y][rc2] * B[rc2][threadIdx.x];
         }
         __syncthreads();
     }
-    d_C[i*n + j] = C[threadIdx.x][threadIdx.y];
+    d_C[i*n + j] = C[threadIdx.y][threadIdx.x];
 }
 
 extern "C" {
@@ -189,19 +189,19 @@ extern "C" {
 
         int blockx = 0, blocky = 0;
 
-        if(m%32)
+        if(m%128)
             blockx = 1;
-        if (n%128)
+        if (n%32)
             blocky = 1; 
-        dim3 NUM_BLOCKS = dim3(m/32 + blockx, n/128 + blocky, 1);
+        dim3 NUM_BLOCKS = dim3(m/128 + blockx, n/32 + blocky, 1);
         dim3 NUM_THREADS = dim3(32, 32, 1);
 
         if (m*n/4 <= 1024){
             NUM_BLOCKS = dim3(1, 1, 1);
-            blocky = 0;
-            if (n%4)
-                blocky = 1;
-            NUM_THREADS = dim3(m, n/4 + blocky, 1);
+            blockx = 0;
+            if (m%4)
+                blockx = 1;
+            NUM_THREADS = dim3(m/4 + blockx, n, 1);
         }
 
         // Kernel launch
@@ -228,16 +228,16 @@ extern "C" {
         cudaMemcpy(d_B, h_B, k*n*sizeof(double), cudaMemcpyHostToDevice);
 
         int blockx = 0, blocky = 0;
-        if(m%32)
+        if(m%64)
             blockx = 1;
-        if (n%64)
+        if (n%32)
             blocky = 1;
-        dim3 NUM_BLOCKS = dim3(m/32 + blockx, n/64 + blocky, 1);
+        dim3 NUM_BLOCKS = dim3(m/64 + blockx, n/32 + blocky, 1);
         dim3 NUM_THREADS = dim3(32, 32, 1);
 
         if (m*n/2 <= 1024){
             NUM_BLOCKS = dim3(1, 1, 1);
-            NUM_THREADS = dim3(m, n/2 + n % 2, 1);
+            NUM_THREADS = dim3(m/2 + m % 2, n, 1);
         }
 
         // Kernel launch
