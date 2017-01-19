@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <helper_cuda.h>
+#include <cublas.h>
+
 #define BLOCK_SIZE 32
 //Sequential version: One thread does it all. AKA--> Launch configuration <<<1,1,>>>
 __global__
@@ -128,7 +130,25 @@ extern "C" {
     }
 
     void matmult_gpulib(int m, int n, int k,double* A, double* B, double* C){
-        cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans, n, m, k, 1.0, B, n, A, k, 0.0, C, n);
+        double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
+        double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
+        double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
+
+        // Transfer data from host to device
+        cudaMemcpy(d_A, A, m*k*sizeof(double), cudaMemcpyHostToDevice);
+        cudaMemcpy(d_B, B, k*n*sizeof(double), cudaMemcpyHostToDevice);
+
+        // Do the actual multiplication
+        cublasDgemm('n', 'n', n, m, k, 1.0, d_B, n, d_A, k, 0.0, d_C, n);
+        checkCudaErrors(cudaDeviceSynchronize());
+
+        // Transfer results from device to host
+        cudaMemcpy(C, d_C, m*n*sizeof(double), cudaMemcpyDeviceToHost);
+
+        // Free memory
+        cudaFree(d_C);
+        cudaFree(d_A);
+        cudaFree(d_B);
     }
 
     void matmult_gpu5(int m, int n, int k, double* h_A, double* h_B, double* h_C){
