@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "matmult.h"
 #include <helper_cuda.h>
 
 
