@@ -152,7 +152,6 @@ extern "C" {
     }
 
     void matmult_gpu5(int m, int n, int k, double* h_A, double* h_B, double* h_C){
-        cudaSetDevice(6);
         double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
         double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
         double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
@@ -178,7 +177,6 @@ extern "C" {
     }
 
     void matmult_gpu4(int m, int n, int k, double* h_A, double* h_B, double* h_C){
-        cudaSetDevice(6);
         double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
         double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
         double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
@@ -218,7 +216,6 @@ extern "C" {
     }
 
     void matmult_gpu3(int m, int n, int k, double* h_A, double* h_B, double* h_C){
-        cudaSetDevice(6);
         double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
         double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
         double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
@@ -254,7 +251,6 @@ extern "C" {
     }
 
     void matmult_gpu2(int m, int n, int k, double* h_A, double* h_B, double* h_C){
-        cudaSetDevice(6);
         double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
         double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
         double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));
@@ -290,7 +286,6 @@ extern "C" {
     }
 
     void matmult_gpu1(int m, int n, int k, double* h_A, double* h_B, double* h_C ){
-        cudaSetDevice(6);
         double* d_A; cudaMalloc((void**)&d_A, m*k*sizeof(double));
         double* d_B; cudaMalloc((void**)&d_B, k*n*sizeof(double));
         double* d_C; cudaMalloc((void**)&d_C, m*n*sizeof(double));

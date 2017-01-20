@@ -7,7 +7,7 @@
 ### -- ask for number of cores (default: 1) --
 #BSUB -n 2
 ### -- Select the resources: 2 gpus in exclusive process mode --
-#BSUB -R "rusage[ngpus_excl_p=2]"
+#BSUB -R "rusage[ngpus_excl_p=1]"
 ### -- set walltime limit: hh:mm --
 #BSUB -W 00:30
 ### -- set the email address --
@@ -35,4 +35,15 @@ module load cuda/8.0
 #   than 2 cpu-cores
 #
 
-./myprogram
+cd /zhome/79/6/104772/Documents/HPC/week3/Assignment3
+
+
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 10 10 10
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 32 32 32
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 64 64 64
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 128 128 128
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 256 256 256
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 512 512 512
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 768 768 768
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 1024 1024 1024
+MATMULT_COMPARE=0 MFLOPS_MAX_IT=1 nvprof ./matmult_f.nvcc2 gpu5 2048 2048 2048
