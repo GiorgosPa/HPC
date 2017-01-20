@@ -1,0 +1,199 @@
+cuda/8.0 is already loaded.
+==4155== NVPROF is profiling process 4155, command: ./matmult_f.nvcc2 gpu5 10 10 10
+==4155== Profiling application: ./matmult_f.nvcc2 gpu5 10 10 10
+==4155== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 43.94%  8.0010us         2  4.0000us  3.7130us  4.2880us  gpu5(int, int, int, double*, double*, double*)
+ 28.29%  5.1520us         4  1.2880us  1.0560us  1.5680us  [CUDA memcpy HtoD]
+ 27.77%  5.0560us         2  2.5280us  2.4640us  2.5920us  [CUDA memcpy DtoH]
+
+==4155== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 99.22%  243.04ms         6  40.507ms  6.8540us  242.79ms  cudaMalloc
+  0.27%  651.08us        91  7.1540us     214ns  241.03us  cuDeviceGetAttribute
+  0.18%  441.76us         1  441.76us  441.76us  441.76us  cuDeviceTotalMem
+  0.16%  384.85us         6  64.141us  7.5100us  182.21us  cudaFree
+  0.08%  194.80us         2  97.398us  20.991us  173.81us  cudaLaunch
+  0.05%  131.76us         6  21.960us  10.480us  36.343us  cudaMemcpy
+  0.03%  79.612us         1  79.612us  79.612us  79.612us  cuDeviceGetName
+  0.01%  18.470us         2  9.2350us  9.0040us  9.4660us  cudaDeviceSynchronize
+  0.00%  7.7430us        12     645ns     230ns  4.2420us  cudaSetupArgument
+  0.00%  4.2090us         3  1.4030us     294ns  3.1650us  cuDeviceGetCount
+  0.00%  2.4470us         2  1.2230us     747ns  1.7000us  cudaConfigureCall
+  0.00%  1.4800us         3     493ns     274ns     781ns  cuDeviceGet
+==4181== NVPROF is profiling process 4181, command: ./matmult_f.nvcc2 gpu5 32 32 32
+==4181== Profiling application: ./matmult_f.nvcc2 gpu5 32 32 32
+==4181== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 41.62%  11.361us         2  5.6800us  5.5370us  5.8240us  gpu5(int, int, int, double*, double*, double*)
+ 34.23%  9.3440us         4  2.3360us  2.3040us  2.4320us  [CUDA memcpy HtoD]
+ 24.15%  6.5920us         2  3.2960us  3.2960us  3.2960us  [CUDA memcpy DtoH]
+
+==4181== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 99.19%  219.49ms         6  36.582ms  4.8670us  219.24ms  cudaMalloc
+  0.24%  536.51us        91  5.8950us     213ns  200.23us  cuDeviceGetAttribute
+  0.20%  441.94us         1  441.94us  441.94us  441.94us  cuDeviceTotalMem
+  0.17%  383.01us         6  63.834us  6.8950us  184.19us  cudaFree
+  0.09%  200.11us         2  100.05us  26.962us  173.14us  cudaLaunch
+  0.07%  155.54us         6  25.923us  14.540us  38.253us  cudaMemcpy
+  0.02%  48.028us         1  48.028us  48.028us  48.028us  cuDeviceGetName
+  0.01%  20.163us         2  10.081us  9.2260us  10.937us  cudaDeviceSynchronize
+  0.00%  7.3450us        12     612ns     222ns  4.0260us  cudaSetupArgument
+  0.00%  4.1830us         3  1.3940us     250ns  3.2330us  cuDeviceGetCount
+  0.00%  2.5210us         2  1.2600us     807ns  1.7140us  cudaConfigureCall
+  0.00%  1.5160us         3     505ns     300ns     816ns  cuDeviceGet
+==4192== NVPROF is profiling process 4192, command: ./matmult_f.nvcc2 gpu5 64 64 64
+==4192== Profiling application: ./matmult_f.nvcc2 gpu5 64 64 64
+==4192== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 44.59%  25.857us         4  6.4640us  6.4010us  6.5600us  [CUDA memcpy HtoD]
+ 35.65%  20.673us         2  10.336us  10.208us  10.465us  gpu5(int, int, int, double*, double*, double*)
+ 19.76%  11.456us         2  5.7280us  5.7280us  5.7280us  [CUDA memcpy DtoH]
+
+==4192== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 99.14%  218.18ms         6  36.364ms  4.6300us  217.94ms  cudaMalloc
+  0.25%  541.44us        91  5.9490us     218ns  200.88us  cuDeviceGetAttribute
+  0.20%  435.77us         1  435.77us  435.77us  435.77us  cuDeviceTotalMem
+  0.18%  388.80us         6  64.799us  6.9490us  186.63us  cudaFree
+  0.11%  244.94us         6  40.822us  30.853us  62.127us  cudaMemcpy
+  0.09%  193.43us         2  96.716us  21.204us  172.23us  cudaLaunch
+  0.02%  48.773us         1  48.773us  48.773us  48.773us  cuDeviceGetName
+  0.01%  28.209us         2  14.104us  12.366us  15.843us  cudaDeviceSynchronize
+  0.00%  8.5680us        12     714ns     219ns  5.3180us  cudaSetupArgument
+  0.00%  4.0860us         3  1.3620us     360ns  3.0380us  cuDeviceGetCount
+  0.00%  2.5990us         2  1.2990us     777ns  1.8220us  cudaConfigureCall
+  0.00%  1.5100us         3     503ns     267ns     809ns  cuDeviceGet
+==4203== NVPROF is profiling process 4203, command: ./matmult_f.nvcc2 gpu5 128 128 128
+==4203== Profiling application: ./matmult_f.nvcc2 gpu5 128 128 128
+==4203== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 47.16%  83.137us         2  41.568us  40.929us  42.208us  gpu5(int, int, int, double*, double*, double*)
+ 35.81%  63.138us         4  15.784us  15.201us  16.576us  [CUDA memcpy HtoD]
+ 17.03%  30.016us         2  15.008us  15.008us  15.008us  [CUDA memcpy DtoH]
+
+==4203== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 98.97%  217.94ms         6  36.324ms  4.6410us  217.71ms  cudaMalloc
+  0.25%  544.62us         6  90.769us  60.741us  158.00us  cudaMemcpy
+  0.25%  541.49us        91  5.9500us     213ns  202.45us  cuDeviceGetAttribute
+  0.19%  428.32us         1  428.32us  428.32us  428.32us  cuDeviceTotalMem
+  0.17%  381.04us         6  63.506us  6.7840us  184.52us  cudaFree
+  0.09%  205.00us         2  102.50us  34.339us  170.66us  cudaLaunch
+  0.04%  92.654us         2  46.327us  44.276us  48.378us  cudaDeviceSynchronize
+  0.02%  49.968us         1  49.968us  49.968us  49.968us  cuDeviceGetName
+  0.00%  9.0620us        12     755ns     232ns  5.4140us  cudaSetupArgument
+  0.00%  4.0690us         3  1.3560us     286ns  2.9460us  cuDeviceGetCount
+  0.00%  3.2120us         2  1.6060us     813ns  2.3990us  cudaConfigureCall
+  0.00%  1.4160us         3     472ns     257ns     788ns  cuDeviceGet
+==4214== NVPROF is profiling process 4214, command: ./matmult_f.nvcc2 gpu5 256 256 256
+==4214== Profiling application: ./matmult_f.nvcc2 gpu5 256 256 256
+==4214== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 61.92%  523.79us         2  261.89us  261.32us  262.47us  gpu5(int, int, int, double*, double*, double*)
+ 25.63%  216.77us         4  54.193us  52.993us  55.617us  [CUDA memcpy HtoD]
+ 12.45%  105.31us         2  52.657us  52.257us  53.057us  [CUDA memcpy DtoH]
+
+==4214== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 92.42%  231.85ms         6  38.641ms  6.6800us  230.22ms  cudaMalloc
+  4.80%  12.037ms         6  2.0062ms  30.724us  5.5511ms  cudaFree
+  1.19%  2.9794ms         2  1.4897ms  54.636us  2.9248ms  cudaLaunch
+  0.97%  2.4341ms         6  405.68us  223.14us  924.48us  cudaMemcpy
+  0.21%  538.75us        91  5.9200us     217ns  200.22us  cuDeviceGetAttribute
+  0.20%  513.46us         2  256.73us  243.11us  270.35us  cudaDeviceSynchronize
+  0.18%  440.04us         1  440.04us  440.04us  440.04us  cuDeviceTotalMem
+  0.02%  47.648us         1  47.648us  47.648us  47.648us  cuDeviceGetName
+  0.00%  8.4610us        12     705ns     220ns  4.5900us  cudaSetupArgument
+  0.00%  4.0640us         3  1.3540us     348ns  3.0180us  cuDeviceGetCount
+  0.00%  3.9660us         2  1.9830us  1.9660us  2.0000us  cudaConfigureCall
+  0.00%  1.5000us         3     500ns     307ns     830ns  cuDeviceGet
+==4227== NVPROF is profiling process 4227, command: ./matmult_f.nvcc2 gpu5 512 512 512
+==4227== Profiling application: ./matmult_f.nvcc2 gpu5 512 512 512
+==4227== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 64.36%  4.1094ms         2  2.0547ms  2.0516ms  2.0578ms  gpu5(int, int, int, double*, double*, double*)
+ 29.20%  1.8641ms         4  466.03us  455.15us  471.56us  [CUDA memcpy HtoD]
+  6.44%  411.02us         2  205.51us  205.48us  205.54us  [CUDA memcpy DtoH]
+
+==4227== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 97.05%  387.24ms         6  64.540ms  196.87us  386.19ms  cudaMalloc
+  1.33%  5.2915ms         6  881.92us  751.40us  1.1451ms  cudaMemcpy
+  1.05%  4.1802ms         2  2.0901ms  2.0616ms  2.1186ms  cudaDeviceSynchronize
+  0.26%  1.0194ms         6  169.90us  140.40us  231.59us  cudaFree
+  0.13%  520.75us        91  5.7220us     223ns  194.77us  cuDeviceGetAttribute
+  0.11%  426.35us         1  426.35us  426.35us  426.35us  cuDeviceTotalMem
+  0.07%  281.43us         2  140.72us  38.697us  242.74us  cudaLaunch
+  0.01%  48.813us         1  48.813us  48.813us  48.813us  cuDeviceGetName
+  0.00%  9.2040us        12     767ns     298ns  4.5620us  cudaSetupArgument
+  0.00%  4.2520us         3  1.4170us     272ns  3.2600us  cuDeviceGetCount
+  0.00%  3.7950us         2  1.8970us  1.7150us  2.0800us  cudaConfigureCall
+  0.00%  1.4130us         3     471ns     302ns     765ns  cuDeviceGet
+==4239== NVPROF is profiling process 4239, command: ./matmult_f.nvcc2 gpu5 768 768 768
+==4239== Profiling application: ./matmult_f.nvcc2 gpu5 768 768 768
+==4239== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 62.34%  13.852ms         2  6.9260ms  6.9235ms  6.9285ms  gpu5(int, int, int, double*, double*, double*)
+ 23.62%  5.2475ms         4  1.3119ms  1.2806ms  1.3411ms  [CUDA memcpy HtoD]
+ 14.04%  3.1193ms         2  1.5597ms  1.3527ms  1.7666ms  [CUDA memcpy DtoH]
+
+==4239== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 89.08%  223.03ms         6  37.172ms  196.94us  221.96ms  cudaMalloc
+  5.55%  13.884ms         2  6.9419ms  6.9312ms  6.9527ms  cudaDeviceSynchronize
+  4.42%  11.057ms         6  1.8429ms  1.6096ms  2.5087ms  cudaMemcpy
+  0.38%  950.19us         6  158.37us  137.47us  230.14us  cudaFree
+  0.28%  709.53us        91  7.7960us     211ns  280.87us  cuDeviceGetAttribute
+  0.17%  427.46us         1  427.46us  427.46us  427.46us  cuDeviceTotalMem
+  0.10%  244.92us         2  122.46us  27.793us  217.13us  cudaLaunch
+  0.02%  46.107us         1  46.107us  46.107us  46.107us  cuDeviceGetName
+  0.00%  11.461us        12     955ns     304ns  6.7240us  cudaSetupArgument
+  0.00%  4.2380us         3  1.4120us     297ns  3.2800us  cuDeviceGetCount
+  0.00%  3.9830us         2  1.9910us  1.0400us  2.9430us  cudaConfigureCall
+  0.00%  1.5130us         3     504ns     269ns     824ns  cuDeviceGet
+==4252== NVPROF is profiling process 4252, command: ./matmult_f.nvcc2 gpu5 1024 1024 1024
+==4252== Profiling application: ./matmult_f.nvcc2 gpu5 1024 1024 1024
+==4252== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 66.05%  32.347ms         2  16.173ms  16.173ms  16.174ms  gpu5(int, int, int, double*, double*, double*)
+ 21.20%  10.384ms         4  2.5959ms  2.5574ms  2.6475ms  [CUDA memcpy HtoD]
+ 12.75%  6.2426ms         2  3.1213ms  2.6088ms  3.6338ms  [CUDA memcpy DtoH]
+
+==4252== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 79.92%  217.60ms         6  36.267ms  201.03us  216.52ms  cudaMalloc
+ 11.91%  32.422ms         2  16.211ms  16.176ms  16.246ms  cudaDeviceSynchronize
+  7.32%  19.931ms         6  3.3218ms  2.8271ms  4.9540ms  cudaMemcpy
+  0.37%  1.0056ms         6  167.61us  143.68us  227.04us  cudaFree
+  0.19%  526.11us        91  5.7810us     211ns  193.63us  cuDeviceGetAttribute
+  0.16%  445.87us         1  445.87us  445.87us  445.87us  cuDeviceTotalMem
+  0.11%  290.37us         2  145.18us  33.515us  256.85us  cudaLaunch
+  0.02%  46.564us         1  46.564us  46.564us  46.564us  cuDeviceGetName
+  0.00%  9.8720us        12     822ns     301ns  5.4780us  cudaSetupArgument
+  0.00%  3.9350us         3  1.3110us     263ns  2.9320us  cuDeviceGetCount
+  0.00%  3.4740us         2  1.7370us  1.3170us  2.1570us  cudaConfigureCall
+  0.00%  1.5280us         3     509ns     273ns     871ns  cuDeviceGet
+==4263== NVPROF is profiling process 4263, command: ./matmult_f.nvcc2 gpu5 2048 2048 2048
+==4263== Profiling application: ./matmult_f.nvcc2 gpu5 2048 2048 2048
+==4263== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 77.84%  258.65ms         2  129.33ms  129.31ms  129.34ms  gpu5(int, int, int, double*, double*, double*)
+ 13.35%  44.375ms         4  11.094ms  11.064ms  11.168ms  [CUDA memcpy HtoD]
+  8.81%  29.278ms         2  14.639ms  12.152ms  17.126ms  [CUDA memcpy DtoH]
+
+==4263== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 46.59%  258.69ms         2  129.35ms  129.34ms  129.35ms  cudaDeviceSynchronize
+ 39.23%  217.84ms         6  36.306ms  228.08us  216.59ms  cudaMalloc
+ 13.73%  76.265ms         6  12.711ms  11.346ms  17.716ms  cudaMemcpy
+  0.21%  1.1577ms         6  192.94us  156.12us  260.60us  cudaFree
+  0.09%  515.92us        91  5.6690us     214ns  190.36us  cuDeviceGetAttribute
+  0.08%  447.37us         1  447.37us  447.37us  447.37us  cuDeviceTotalMem
+  0.06%  326.75us         2  163.37us  52.598us  274.15us  cudaLaunch
+  0.01%  46.717us         1  46.717us  46.717us  46.717us  cuDeviceGetName
+  0.00%  11.600us        12     966ns     299ns  6.0710us  cudaSetupArgument
+  0.00%  5.4760us         2  2.7380us  2.2040us  3.2720us  cudaConfigureCall
+  0.00%  4.0930us         3  1.3640us     356ns  3.0440us  cuDeviceGetCount
+  0.00%  1.5230us         3     507ns     271ns     808ns  cuDeviceGet

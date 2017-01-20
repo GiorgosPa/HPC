@@ -1,0 +1,10 @@
+     2.344     14.827 # matmult_gpulib
+    14.648     58.576 # matmult_gpulib
+    58.594   1383.111 # matmult_gpulib
+   131.836   3829.135 # matmult_gpulib
+   234.375   3040.484 # matmult_gpulib
+  1464.844  19717.954 # matmult_gpulib
+  5859.375  65189.048 # matmult_gpulib
+ 13183.594 119224.248 # matmult_gpulib
+ 23437.500 166278.683 # matmult_gpulib
+ 93750.000 324833.523 # matmult_gpulib

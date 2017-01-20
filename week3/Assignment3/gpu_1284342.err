@@ -1,0 +1,223 @@
+cuda/8.0 is already loaded.
+==1430== NVPROF is profiling process 1430, command: ./matmult_f.nvcc2 gpu5 10 10 10
+==1430== Profiling application: ./matmult_f.nvcc2 gpu5 10 10 10
+==1430== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 50.31%  5.1520us         4  1.2880us  1.0560us  1.5680us  [CUDA memcpy HtoD]
+ 49.69%  5.0880us         2  2.5440us  2.4640us  2.6240us  [CUDA memcpy DtoH]
+
+==1430== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 99.29%  233.90ms         6  38.983ms  6.4980us  233.65ms  cudaMalloc
+  0.26%  612.28us        91  6.7280us     213ns  229.26us  cuDeviceGetAttribute
+  0.19%  442.41us         1  442.41us  442.41us  442.41us  cuDeviceTotalMem
+  0.16%  379.78us         6  63.296us  7.5850us  183.40us  cudaFree
+  0.06%  133.01us         6  22.168us  10.980us  35.734us  cudaMemcpy
+  0.03%  67.342us         1  67.342us  67.342us  67.342us  cuDeviceGetName
+  0.01%  13.802us         2  6.9010us  5.6790us  8.1230us  cudaDeviceSynchronize
+  0.00%  10.007us         2  5.0030us  1.0300us  8.9770us  cudaSetDevice
+  0.00%  7.4570us        12     621ns     220ns  4.0700us  cudaSetupArgument
+  0.00%  5.4360us         2  2.7180us     883ns  4.5530us  cudaLaunch
+  0.00%  4.1050us         3  1.3680us     293ns  3.0760us  cuDeviceGetCount
+  0.00%  2.5620us         2  1.2810us     768ns  1.7940us  cudaConfigureCall
+  0.00%  1.6250us         3     541ns     318ns     876ns  cuDeviceGet
+==1444== NVPROF is profiling process 1444, command: ./matmult_f.nvcc2 gpu5 32 32 32
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1444== Profiling application: ./matmult_f.nvcc2 gpu5 32 32 32
+==1444== Warning: Found 1 invalid records in the result.
+==1444== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1444== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  28.477us         2  14.238us  10.896us  17.581us  [CUDA memcpy HtoD]
+
+==1444== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 53.30%  231.45ms         3  77.150ms  7.2050us  231.43ms  cudaMalloc
+ 28.64%  124.37ms         1  124.37ms  124.37ms  124.37ms  cudaDeviceReset
+ 17.76%  77.107ms         1  77.107ms  77.107ms  77.107ms  cudaDeviceSynchronize
+  0.13%  561.41us        91  6.1690us     213ns  211.23us  cuDeviceGetAttribute
+  0.10%  445.76us         1  445.76us  445.76us  445.76us  cuDeviceTotalMem
+  0.04%  164.34us         1  164.34us  164.34us  164.34us  cudaLaunch
+  0.01%  52.279us         2  26.139us  14.560us  37.719us  cudaMemcpy
+  0.01%  49.180us         1  49.180us  49.180us  49.180us  cuDeviceGetName
+  0.00%  7.8780us         1  7.8780us  7.8780us  7.8780us  cudaSetDevice
+  0.00%  6.1480us         6  1.0240us     308ns  4.1040us  cudaSetupArgument
+  0.00%  3.9500us         3  1.3160us     296ns  2.9440us  cuDeviceGetCount
+  0.00%  1.8900us         1  1.8900us  1.8900us  1.8900us  cudaConfigureCall
+  0.00%  1.4390us         3     479ns     300ns     758ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1455== NVPROF is profiling process 1455, command: ./matmult_f.nvcc2 gpu5 64 64 64
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1455== Profiling application: ./matmult_f.nvcc2 gpu5 64 64 64
+==1455== Warning: Found 1 invalid records in the result.
+==1455== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1455== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  54.389us         2  27.194us  26.048us  28.341us  [CUDA memcpy HtoD]
+
+==1455== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 42.51%  218.47ms         3  72.824ms  7.3170us  218.45ms  cudaMalloc
+ 33.07%  169.95ms         1  169.95ms  169.95ms  169.95ms  cudaDeviceSynchronize
+ 24.16%  124.13ms         1  124.13ms  124.13ms  124.13ms  cudaDeviceReset
+  0.11%  544.62us        91  5.9840us     210ns  202.49us  cuDeviceGetAttribute
+  0.09%  451.38us         1  451.38us  451.38us  451.38us  cuDeviceTotalMem
+  0.03%  178.04us         1  178.04us  178.04us  178.04us  cudaLaunch
+  0.02%  79.043us         2  39.521us  30.220us  48.823us  cudaMemcpy
+  0.01%  48.549us         1  48.549us  48.549us  48.549us  cuDeviceGetName
+  0.00%  8.9400us         1  8.9400us  8.9400us  8.9400us  cudaSetDevice
+  0.00%  6.5340us         6  1.0890us     266ns  4.7500us  cudaSetupArgument
+  0.00%  3.9160us         3  1.3050us     252ns  2.8900us  cuDeviceGetCount
+  0.00%  2.2820us         1  2.2820us  2.2820us  2.2820us  cudaConfigureCall
+  0.00%  1.5430us         3     514ns     315ns     877ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1466== NVPROF is profiling process 1466, command: ./matmult_f.nvcc2 gpu5 128 128 128
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1466== Profiling application: ./matmult_f.nvcc2 gpu5 128 128 128
+==1466== Warning: Found 1 invalid records in the result.
+==1466== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1466== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  142.45us         2  71.223us  70.796us  71.650us  [CUDA memcpy HtoD]
+
+==1466== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 61.39%  548.16ms         1  548.16ms  548.16ms  548.16ms  cudaDeviceSynchronize
+ 24.41%  218.00ms         3  72.666ms  4.7770us  217.99ms  cudaMalloc
+ 14.05%  125.44ms         1  125.44ms  125.44ms  125.44ms  cudaDeviceReset
+  0.06%  542.92us        91  5.9660us     217ns  200.03us  cuDeviceGetAttribute
+  0.05%  432.70us         1  432.70us  432.70us  432.70us  cuDeviceTotalMem
+  0.02%  172.15us         1  172.15us  172.15us  172.15us  cudaLaunch
+  0.02%  167.85us         2  83.925us  75.877us  91.974us  cudaMemcpy
+  0.01%  47.985us         1  47.985us  47.985us  47.985us  cuDeviceGetName
+  0.00%  9.6840us         1  9.6840us  9.6840us  9.6840us  cudaSetDevice
+  0.00%  6.0760us         6  1.0120us     237ns  4.3000us  cudaSetupArgument
+  0.00%  3.6730us         3  1.2240us     310ns  2.5860us  cuDeviceGetCount
+  0.00%  1.9330us         1  1.9330us  1.9330us  1.9330us  cudaConfigureCall
+  0.00%  1.4740us         3     491ns     290ns     798ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1478== NVPROF is profiling process 1478, command: ./matmult_f.nvcc2 gpu5 256 256 256
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1478== Profiling application: ./matmult_f.nvcc2 gpu5 256 256 256
+==1478== Warning: Found 1 invalid records in the result.
+==1478== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1478== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  442.20us         2  221.10us  198.49us  243.71us  [CUDA memcpy HtoD]
+
+==1478== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 61.75%  557.21ms         1  557.21ms  557.21ms  557.21ms  cudaDeviceSynchronize
+ 24.22%  218.52ms         3  72.841ms  10.872us  218.30ms  cudaMalloc
+ 13.84%  124.88ms         1  124.88ms  124.88ms  124.88ms  cudaDeviceReset
+  0.06%  544.87us        91  5.9870us     211ns  203.48us  cuDeviceGetAttribute
+  0.05%  470.73us         2  235.37us  221.27us  249.46us  cudaMemcpy
+  0.05%  428.23us         1  428.23us  428.23us  428.23us  cuDeviceTotalMem
+  0.02%  187.07us         1  187.07us  187.07us  187.07us  cudaLaunch
+  0.01%  49.461us         1  49.461us  49.461us  49.461us  cuDeviceGetName
+  0.00%  15.629us         1  15.629us  15.629us  15.629us  cudaSetDevice
+  0.00%  6.7740us         6  1.1290us     251ns  4.9410us  cudaSetupArgument
+  0.00%  3.9960us         3  1.3320us     367ns  2.9020us  cuDeviceGetCount
+  0.00%  2.0650us         1  2.0650us  2.0650us  2.0650us  cudaConfigureCall
+  0.00%  1.4770us         3     492ns     277ns     780ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1489== NVPROF is profiling process 1489, command: ./matmult_f.nvcc2 gpu5 512 512 512
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1489== Profiling application: ./matmult_f.nvcc2 gpu5 512 512 512
+==1489== Warning: Found 1 invalid records in the result.
+==1489== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1489== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  1.5654ms         2  782.71us  744.28us  821.15us  [CUDA memcpy HtoD]
+
+==1489== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 52.61%  534.22ms         1  534.22ms  534.22ms  534.22ms  cudaDeviceSynchronize
+ 25.66%  260.59ms         1  260.59ms  260.59ms  260.59ms  cudaDeviceReset
+ 21.44%  217.77ms         3  72.590ms  205.56us  217.36ms  cudaMalloc
+  0.16%  1.5952ms         2  797.59us  768.02us  827.17us  cudaMemcpy
+  0.06%  562.66us        91  6.1830us     210ns  213.58us  cuDeviceGetAttribute
+  0.04%  429.47us         1  429.47us  429.47us  429.47us  cuDeviceTotalMem
+  0.02%  242.82us         1  242.82us  242.82us  242.82us  cudaLaunch
+  0.01%  50.898us         1  50.898us  50.898us  50.898us  cuDeviceGetName
+  0.00%  8.8950us         1  8.8950us  8.8950us  8.8950us  cudaSetDevice
+  0.00%  8.0530us         6  1.3420us     320ns  5.9180us  cudaSetupArgument
+  0.00%  4.0850us         3  1.3610us     338ns  3.0270us  cuDeviceGetCount
+  0.00%  2.0310us         1  2.0310us  2.0310us  2.0310us  cudaConfigureCall
+  0.00%  1.5810us         3     527ns     317ns     834ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1501== NVPROF is profiling process 1501, command: ./matmult_f.nvcc2 gpu5 768 768 768
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1501== Profiling application: ./matmult_f.nvcc2 gpu5 768 768 768
+==1501== Warning: Found 1 invalid records in the result.
+==1501== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1501== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  3.3405ms         2  1.6702ms  1.6544ms  1.6860ms  [CUDA memcpy HtoD]
+
+==1501== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 60.84%  541.07ms         1  541.07ms  541.07ms  541.07ms  cudaDeviceSynchronize
+ 24.58%  218.61ms         3  72.869ms  210.68us  218.18ms  cudaMalloc
+ 14.06%  125.00ms         1  125.00ms  125.00ms  125.00ms  cudaDeviceReset
+  0.38%  3.3695ms         2  1.6848ms  1.6772ms  1.6923ms  cudaMemcpy
+  0.06%  558.44us        91  6.1360us     213ns  209.92us  cuDeviceGetAttribute
+  0.05%  432.31us         1  432.31us  432.31us  432.31us  cuDeviceTotalMem
+  0.02%  187.40us         1  187.40us  187.40us  187.40us  cudaLaunch
+  0.01%  49.911us         1  49.911us  49.911us  49.911us  cuDeviceGetName
+  0.00%  11.283us         1  11.283us  11.283us  11.283us  cudaSetDevice
+  0.00%  7.0620us         6  1.1770us     309ns  5.0370us  cudaSetupArgument
+  0.00%  3.9250us         3  1.3080us     311ns  2.9410us  cuDeviceGetCount
+  0.00%  1.9580us         1  1.9580us  1.9580us  1.9580us  cudaConfigureCall
+  0.00%  1.6220us         3     540ns     300ns     879ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1512== NVPROF is profiling process 1512, command: ./matmult_f.nvcc2 gpu5 1024 1024 1024
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1512== Profiling application: ./matmult_f.nvcc2 gpu5 1024 1024 1024
+==1512== Warning: Found 1 invalid records in the result.
+==1512== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1512== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  5.8783ms         2  2.9392ms  2.9345ms  2.9438ms  [CUDA memcpy HtoD]
+
+==1512== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 60.52%  532.09ms         1  532.09ms  532.09ms  532.09ms  cudaDeviceSynchronize
+ 24.43%  214.80ms         3  71.599ms  210.95us  214.37ms  cudaMalloc
+ 14.23%  125.07ms         1  125.07ms  125.07ms  125.07ms  cudaDeviceReset
+  0.67%  5.9060ms         2  2.9530ms  2.9507ms  2.9553ms  cudaMemcpy
+  0.06%  543.04us        91  5.9670us     227ns  202.55us  cuDeviceGetAttribute
+  0.05%  428.78us         1  428.78us  428.78us  428.78us  cuDeviceTotalMem
+  0.03%  262.14us         1  262.14us  262.14us  262.14us  cudaLaunch
+  0.01%  50.083us         1  50.083us  50.083us  50.083us  cuDeviceGetName
+  0.00%  9.1170us         1  9.1170us  9.1170us  9.1170us  cudaSetDevice
+  0.00%  7.6090us         6  1.2680us     329ns  5.1700us  cudaSetupArgument
+  0.00%  4.4120us         3  1.4700us     334ns  3.1510us  cuDeviceGetCount
+  0.00%  2.1580us         1  2.1580us  2.1580us  2.1580us  cudaConfigureCall
+  0.00%  1.5920us         3     530ns     341ns     801ns  cuDeviceGet
+======== Error: Application returned non-zero code 1
+==1536== NVPROF is profiling process 1536, command: ./matmult_f.nvcc2 gpu5 2048 2048 2048
+CUDA error at matmult.cu:169 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==1536== Profiling application: ./matmult_f.nvcc2 gpu5 2048 2048 2048
+==1536== Warning: Found 1 invalid records in the result.
+==1536== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==1536== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  22.973ms         2  11.487ms  11.449ms  11.524ms  [CUDA memcpy HtoD]
+
+==1536== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 56.58%  540.50ms         1  540.50ms  540.50ms  540.50ms  cudaDeviceSynchronize
+ 22.89%  218.65ms         3  72.884ms  237.38us  218.18ms  cudaMalloc
+ 17.97%  171.69ms         1  171.69ms  171.69ms  171.69ms  cudaDeviceReset
+  2.41%  23.026ms         2  11.513ms  11.470ms  11.556ms  cudaMemcpy
+  0.06%  555.86us        91  6.1080us     210ns  207.87us  cuDeviceGetAttribute
+  0.05%  443.89us         1  443.89us  443.89us  443.89us  cuDeviceTotalMem
+  0.03%  288.77us         1  288.77us  288.77us  288.77us  cudaLaunch
+  0.01%  49.024us         1  49.024us  49.024us  49.024us  cuDeviceGetName
+  0.00%  9.0270us         6  1.5040us     317ns  6.6000us  cudaSetupArgument
+  0.00%  8.4290us         1  8.4290us  8.4290us  8.4290us  cudaSetDevice
+  0.00%  4.3270us         3  1.4420us     302ns  3.2640us  cuDeviceGetCount
+  0.00%  3.1570us         1  3.1570us  3.1570us  3.1570us  cudaConfigureCall
+  0.00%  1.5890us         3     529ns     283ns     846ns  cuDeviceGet
+======== Error: Application returned non-zero code 1

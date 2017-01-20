@@ -1,0 +1,299 @@
+cuda/8.0 is already loaded.
+==20178== NVPROF is profiling process 20178, command: ./matmult_f.nvcc2 gpulib 10 10 10
+==20178== Profiling application: ./matmult_f.nvcc2 gpulib 10 10 10
+==20178== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 55.66%  5.6446ms      1001  5.6380us  5.5040us  7.0080us  void gemm_kernel2x2_core<double, bool=0, bool=0, bool=0, bool=0, bool=0>(double*, double const *, double const *, int, int, int, int, int, int, double*, double*, double, double, int)
+ 22.80%  2.3126ms      1001  2.3100us  2.2400us  11.584us  [CUDA memcpy DtoH]
+ 21.53%  2.1838ms      2003  1.0900us  1.0560us  10.176us  [CUDA memcpy HtoD]
+
+==20178== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 47.30%  303.50ms      5006  60.626us     405ns  279.62ms  cudaFree
+ 40.33%  258.73ms      3006  86.072us  6.6900us  233.69ms  cudaMalloc
+  7.22%  46.330ms      3004  15.422us  9.4440us  35.233us  cudaMemcpy
+  2.38%  15.276ms      1001  15.260us  14.502us  78.335us  cudaLaunch
+  1.51%  9.6727ms      1001  9.6630us  5.9680us  21.056us  cudaDeviceSynchronize
+  0.66%  4.2546ms     14014     303ns     269ns  12.310us  cudaSetupArgument
+  0.20%  1.2667ms       178  7.1160us     202ns  245.57us  cuDeviceGetAttribute
+  0.15%  940.86us      1001     939ns     340ns  535.70us  cudaGetLastError
+  0.14%  877.80us         2  438.90us  432.69us  445.12us  cuDeviceTotalMem
+  0.09%  575.75us      1001     575ns     508ns  4.4730us  cudaConfigureCall
+  0.02%  123.85us         2  61.925us  57.288us  66.562us  cuDeviceGetName
+  0.01%  32.499us        16  2.0310us     717ns  12.719us  cudaEventCreateWithFlags
+  0.00%  13.261us         4  3.3150us     283ns  12.147us  cuDeviceGet
+  0.00%  9.6700us        11     879ns     447ns  4.2830us  cudaDeviceGetAttribute
+  0.00%  4.2680us         4  1.0670us     267ns  2.8290us  cuDeviceGetCount
+  0.00%  3.1980us         1  3.1980us  3.1980us  3.1980us  cudaGetDevice
+  0.00%  1.1810us         1  1.1810us  1.1810us  1.1810us  cuDriverGetVersion
+  0.00%     949ns         1     949ns     949ns     949ns  cuInit
+==20192== NVPROF is profiling process 20192, command: ./matmult_f.nvcc2 gpulib 25 25 25
+==20192== Profiling application: ./matmult_f.nvcc2 gpulib 25 25 25
+==20192== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 75.01%  20.175ms      1001  20.154us  20.064us  25.600us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 13.71%  3.6863ms      2003  1.8400us  1.5040us  10.400us  [CUDA memcpy HtoD]
+ 11.29%  3.0359ms      1001  3.0320us  2.9440us  12.256us  [CUDA memcpy DtoH]
+
+==20192== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 45.01%  466.30ms      3006  155.12us  6.8140us  230.51ms  cudaMalloc
+ 44.64%  462.46ms      5006  92.381us     387ns  279.92ms  cudaFree
+  5.49%  56.825ms      3004  18.916us  10.934us  43.245us  cudaMemcpy
+  2.37%  24.528ms      1001  24.503us  7.0210us  36.757us  cudaDeviceSynchronize
+  1.73%  17.911ms      1001  17.892us  17.124us  57.875us  cudaLaunch
+  0.40%  4.1949ms     14014     299ns     270ns  5.9100us  cudaSetupArgument
+  0.11%  1.1789ms       178  6.6220us     203ns  241.44us  cuDeviceGetAttribute
+  0.09%  940.55us      1001     939ns     385ns  518.82us  cudaGetLastError
+  0.08%  871.30us         2  435.65us  433.49us  437.80us  cuDeviceTotalMem
+  0.06%  602.69us      1001     602ns     541ns  1.8510us  cudaConfigureCall
+  0.01%  117.12us         2  58.559us  54.819us  62.300us  cuDeviceGetName
+  0.00%  21.063us        16  1.3160us     687ns  8.1360us  cudaEventCreateWithFlags
+  0.00%  9.3010us        11     845ns     433ns  4.0100us  cudaDeviceGetAttribute
+  0.00%  4.4800us         4  1.1200us     278ns  2.7630us  cuDeviceGetCount
+  0.00%  3.0090us         1  3.0090us  3.0090us  3.0090us  cudaGetDevice
+  0.00%  1.7260us         4     431ns     270ns     816ns  cuDeviceGet
+  0.00%     869ns         1     869ns     869ns     869ns  cuInit
+  0.00%     703ns         1     703ns     703ns     703ns  cuDriverGetVersion
+==20203== NVPROF is profiling process 20203, command: ./matmult_f.nvcc2 gpulib 50 50 50
+==20203== Profiling application: ./matmult_f.nvcc2 gpulib 50 50 50
+==20203== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 67.26%  26.339ms      1001  26.312us  26.176us  31.520us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 22.19%  8.6887ms      2003  4.3370us  1.5360us  13.120us  [CUDA memcpy HtoD]
+ 10.55%  4.1326ms      1001  4.1280us  4.0640us  13.376us  [CUDA memcpy DtoH]
+
+==20203== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 44.07%  306.02ms      5006  61.129us     398ns  281.60ms  cudaFree
+ 38.05%  264.19ms      3006  87.886us  7.0650us  238.95ms  cudaMalloc
+ 10.13%  70.355ms      3004  23.420us  15.304us  52.708us  cudaMemcpy
+  4.38%  30.402ms      1001  30.371us  7.6450us  43.097us  cudaDeviceSynchronize
+  2.24%  15.550ms      1001  15.534us  14.688us  56.698us  cudaLaunch
+  0.60%  4.1669ms     14014     297ns     268ns  12.173us  cudaSetupArgument
+  0.17%  1.1790ms       178  6.6230us     200ns  242.20us  cuDeviceGetAttribute
+  0.14%  950.40us      1001     949ns     377ns  516.63us  cudaGetLastError
+  0.12%  848.53us         2  424.26us  417.40us  431.13us  cuDeviceTotalMem
+  0.08%  584.51us      1001     583ns     496ns  12.081us  cudaConfigureCall
+  0.02%  116.25us         2  58.127us  51.720us  64.534us  cuDeviceGetName
+  0.00%  18.595us        16  1.1620us     664ns  7.3670us  cudaEventCreateWithFlags
+  0.00%  9.1430us        11     831ns     423ns  3.8430us  cudaDeviceGetAttribute
+  0.00%  4.2660us         4  1.0660us     290ns  2.7500us  cuDeviceGetCount
+  0.00%  2.9740us         1  2.9740us  2.9740us  2.9740us  cudaGetDevice
+  0.00%  1.9510us         4     487ns     297ns     814ns  cuDeviceGet
+  0.00%  1.0820us         1  1.0820us  1.0820us  1.0820us  cuInit
+  0.00%     927ns         1     927ns     927ns     927ns  cuDriverGetVersion
+==20215== NVPROF is profiling process 20215, command: ./matmult_f.nvcc2 gpulib 75 75 75
+==20215== Profiling application: ./matmult_f.nvcc2 gpulib 75 75 75
+==20215== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 58.43%  33.316ms      1001  33.282us  33.057us  38.881us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 30.01%  17.115ms      2003  8.5440us  1.6000us  17.281us  [CUDA memcpy HtoD]
+ 11.56%  6.5927ms      1001  6.5860us  6.4640us  26.081us  [CUDA memcpy DtoH]
+
+==20215== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 42.59%  304.38ms      5006  60.802us     385ns  279.10ms  cudaFree
+ 34.63%  247.52ms      3006  82.340us  7.0740us  221.82ms  cudaMalloc
+ 14.28%  102.09ms      3004  33.983us  24.096us  72.782us  cudaMemcpy
+  5.21%  37.219ms      1001  37.182us  7.1500us  49.614us  cudaDeviceSynchronize
+  2.20%  15.703ms      1001  15.686us  14.977us  56.225us  cudaLaunch
+  0.57%  4.1083ms     14014     293ns     267ns  15.542us  cudaSetupArgument
+  0.16%  1.1735ms       178  6.5920us     200ns  235.17us  cuDeviceGetAttribute
+  0.13%  947.17us      1001     946ns     390ns  511.46us  cudaGetLastError
+  0.12%  847.33us         2  423.66us  414.82us  432.51us  cuDeviceTotalMem
+  0.07%  533.16us      1001     532ns     463ns  1.5530us  cudaConfigureCall
+  0.02%  118.08us         2  59.040us  52.911us  65.169us  cuDeviceGetName
+  0.00%  19.672us        16  1.2290us     693ns  8.3660us  cudaEventCreateWithFlags
+  0.00%  9.2520us        11     841ns     420ns  3.8640us  cudaDeviceGetAttribute
+  0.00%  5.2040us         4  1.3010us     293ns  3.5370us  cuDeviceGetCount
+  0.00%  3.1230us         1  3.1230us  3.1230us  3.1230us  cudaGetDevice
+  0.00%  2.0780us         4     519ns     337ns     864ns  cuDeviceGet
+  0.00%     868ns         1     868ns     868ns     868ns  cuInit
+  0.00%     770ns         1     770ns     770ns     770ns  cuDriverGetVersion
+==20226== NVPROF is profiling process 20226, command: ./matmult_f.nvcc2 gpulib 100 100 100
+==20226== Profiling application: ./matmult_f.nvcc2 gpulib 100 100 100
+==20226== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 54.56%  3.8588ms       101  38.205us  37.985us  43.713us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 30.74%  2.1742ms       203  10.710us  1.5360us  19.776us  [CUDA memcpy HtoD]
+ 14.70%  1.0395ms       101  10.292us  10.176us  19.521us  [CUDA memcpy DtoH]
+
+==20226== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 52.39%  299.05ms       506  591.02us     426ns  280.31ms  cudaFree
+ 43.25%  246.89ms       306  806.84us  7.0430us  222.55ms  cudaMalloc
+  2.77%  15.801ms       304  51.976us  30.429us  112.10us  cudaMemcpy
+  0.77%  4.3945ms       101  43.509us  20.284us  52.881us  cudaDeviceSynchronize
+  0.34%  1.9137ms       101  18.947us  17.318us  56.517us  cudaLaunch
+  0.21%  1.2001ms       178  6.7420us     206ns  243.01us  cuDeviceGetAttribute
+  0.15%  864.84us         2  432.42us  432.25us  432.58us  cuDeviceTotalMem
+  0.08%  456.29us      1414     322ns     284ns  11.704us  cudaSetupArgument
+  0.02%  119.56us         2  59.781us  52.618us  66.945us  cuDeviceGetName
+  0.01%  63.032us       101     624ns     573ns  2.1350us  cudaConfigureCall
+  0.01%  47.631us       101     471ns     426ns  2.1270us  cudaGetLastError
+  0.00%  20.479us        16  1.2790us     698ns  7.4030us  cudaEventCreateWithFlags
+  0.00%  9.6780us        11     879ns     446ns  3.9220us  cudaDeviceGetAttribute
+  0.00%  4.6380us         4  1.1590us     246ns  3.1680us  cuDeviceGetCount
+  0.00%  2.9270us         1  2.9270us  2.9270us  2.9270us  cudaGetDevice
+  0.00%  2.0130us         4     503ns     308ns     879ns  cuDeviceGet
+  0.00%  1.0120us         1  1.0120us  1.0120us  1.0120us  cuInit
+  0.00%     783ns         1     783ns     783ns     783ns  cuDriverGetVersion
+==20237== NVPROF is profiling process 20237, command: ./matmult_f.nvcc2 gpulib 250 250 250
+==20237== Profiling application: ./matmult_f.nvcc2 gpulib 250 250 250
+==20237== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 44.73%  10.345ms       203  50.961us  1.5360us  60.769us  [CUDA memcpy HtoD]
+ 33.19%  7.6755ms       101  75.995us  75.713us  77.538us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 22.08%  5.1051ms       101  50.545us  49.985us  59.393us  [CUDA memcpy DtoH]
+
+==20237== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 47.51%  314.47ms       506  621.48us     410ns  280.05ms  cudaFree
+ 40.15%  265.76ms       306  868.48us  9.5730us  220.27ms  cudaMalloc
+ 10.04%  66.447ms       304  218.58us  26.027us  469.37us  cudaMemcpy
+  1.60%  10.618ms       101  105.13us  76.576us  111.39us  cudaDeviceSynchronize
+  0.29%  1.9275ms       101  19.083us  17.961us  56.677us  cudaLaunch
+  0.18%  1.1693ms       178  6.5690us     200ns  236.49us  cuDeviceGetAttribute
+  0.13%  850.72us         2  425.36us  415.62us  435.10us  cuDeviceTotalMem
+  0.06%  429.94us      1414     304ns     267ns  5.7200us  cudaSetupArgument
+  0.02%  115.92us         2  57.958us  52.266us  63.651us  cuDeviceGetName
+  0.01%  63.001us       101     623ns     567ns  1.6560us  cudaConfigureCall
+  0.01%  48.327us       101     478ns     440ns  2.2570us  cudaGetLastError
+  0.00%  19.695us        16  1.2300us     678ns  7.1560us  cudaEventCreateWithFlags
+  0.00%  8.4150us        11     765ns     445ns  2.9120us  cudaDeviceGetAttribute
+  0.00%  4.6420us         4  1.1600us     248ns  3.1100us  cuDeviceGetCount
+  0.00%  2.9960us         1  2.9960us  2.9960us  2.9960us  cudaGetDevice
+  0.00%  2.0200us         4     505ns     328ns     830ns  cuDeviceGet
+  0.00%     917ns         1     917ns     917ns     917ns  cuInit
+  0.00%     772ns         1     772ns     772ns     772ns  cuDriverGetVersion
+==20260== NVPROF is profiling process 20260, command: ./matmult_f.nvcc2 gpulib 500 500 500
+==20260== Profiling application: ./matmult_f.nvcc2 gpulib 500 500 500
+==20260== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 59.98%  8.7205ms        23  379.15us  1.5360us  433.58us  [CUDA memcpy HtoD]
+ 25.19%  3.6619ms        11  332.90us  331.02us  337.70us  dgemm_sm35_ldg_nn_64x8x128x8x32
+ 14.84%  2.1571ms        11  196.10us  194.95us  204.04us  [CUDA memcpy DtoH]
+
+==20260== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 51.97%  281.83ms        56  5.0327ms     462ns  276.46ms  cudaFree
+ 42.16%  228.63ms        36  6.3509ms  12.691us  221.11ms  cudaMalloc
+  4.60%  24.955ms        34  733.97us  25.491us  918.34us  cudaMemcpy
+  0.81%  4.3683ms        11  397.12us  332.03us  408.88us  cudaDeviceSynchronize
+  0.22%  1.1724ms       178  6.5860us     197ns  236.25us  cuDeviceGetAttribute
+  0.16%  873.83us         2  436.92us  421.56us  452.27us  cuDeviceTotalMem
+  0.05%  256.84us        11  23.349us  19.024us  56.195us  cudaLaunch
+  0.02%  118.27us         2  59.133us  51.651us  66.616us  cuDeviceGetName
+  0.01%  43.086us       154     279ns     207ns  6.2000us  cudaSetupArgument
+  0.00%  19.862us        16  1.2410us     750ns  5.8670us  cudaEventCreateWithFlags
+  0.00%  9.1030us        11     827ns     433ns  3.8510us  cudaDeviceGetAttribute
+  0.00%  8.4890us        11     771ns     620ns  1.6730us  cudaConfigureCall
+  0.00%  7.0930us        11     644ns     450ns  2.4220us  cudaGetLastError
+  0.00%  4.3840us         4  1.0960us     351ns  2.7570us  cuDeviceGetCount
+  0.00%  3.1250us         1  3.1250us  3.1250us  3.1250us  cudaGetDevice
+  0.00%  2.0600us         4     515ns     294ns     946ns  cuDeviceGet
+  0.00%     847ns         1     847ns     847ns     847ns  cuInit
+  0.00%     835ns         1     835ns     835ns     835ns  cuDriverGetVersion
+==20271== NVPROF is profiling process 20271, command: ./matmult_f.nvcc2 gpulib 750 750 750
+==20271== Profiling application: ./matmult_f.nvcc2 gpulib 750 750 750
+==20271== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 44.31%  4.7895ms         5  957.90us  1.5360us  1.2041ms  [CUDA memcpy HtoD]
+ 28.94%  3.1287ms         2  1.5643ms  1.3396ms  1.7891ms  [CUDA memcpy DtoH]
+ 11.95%  1.2915ms         2  645.74us  645.52us  645.97us  dgemm_sm_heavy_ldg_nn
+  9.12%  986.33us         2  493.16us  492.85us  493.48us  dgemm_sm35_ldg_nn_64x8x128x8x32
+  5.68%  613.94us         2  306.97us  304.01us  309.93us  dgemm_sm35_ldg_nn_128x8x64x16x16
+
+==20271== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 54.16%  281.10ms        11  25.555ms     338ns  280.07ms  cudaFree
+ 42.92%  222.74ms         9  24.748ms  12.334us  221.14ms  cudaMalloc
+  2.10%  10.888ms         7  1.5554ms  26.184us  2.8296ms  cudaMemcpy
+  0.34%  1.7885ms         2  894.27us  890.81us  897.74us  cudaDeviceSynchronize
+  0.23%  1.1964ms       178  6.7210us     201ns  237.57us  cuDeviceGetAttribute
+  0.17%  866.23us         2  433.11us  432.43us  433.80us  cuDeviceTotalMem
+  0.03%  142.48us         6  23.746us  11.813us  54.878us  cudaLaunch
+  0.02%  123.65us         2  61.826us  53.351us  70.302us  cuDeviceGetName
+  0.01%  53.735us         2  26.867us  22.132us  31.603us  cudaStreamCreateWithFlags
+  0.01%  30.069us        78     385ns     209ns  10.924us  cudaSetupArgument
+  0.00%  22.379us        18  1.2430us     691ns  7.4750us  cudaEventCreateWithFlags
+  0.00%  13.209us         8  1.6510us     807ns  3.5400us  cudaStreamWaitEvent
+  0.00%  12.118us         2  6.0590us  2.5740us  9.5440us  cudaStreamGetPriority
+  0.00%  11.951us         6  1.9910us     794ns  4.8190us  cudaEventRecord
+  0.00%  8.7900us        11     799ns     429ns  3.3300us  cudaDeviceGetAttribute
+  0.00%  4.6680us         4  1.1670us     322ns  3.0580us  cuDeviceGetCount
+  0.00%  4.0410us         6     673ns     357ns  1.6500us  cudaConfigureCall
+  0.00%  2.9050us         1  2.9050us  2.9050us  2.9050us  cudaGetDevice
+  0.00%  2.7410us         2  1.3700us     505ns  2.2360us  cudaGetLastError
+  0.00%  1.8800us         4     470ns     245ns     810ns  cuDeviceGet
+  0.00%     935ns         1     935ns     935ns     935ns  cuInit
+  0.00%     868ns         1     868ns     868ns     868ns  cuDriverGetVersion
+==20283== NVPROF is profiling process 20283, command: ./matmult_f.nvcc2 gpulib 1000 1000 1000
+==20283== Profiling application: ./matmult_f.nvcc2 gpulib 1000 1000 1000
+==20283== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 45.67%  9.7649ms         5  1.9530ms  1.5680us  2.4701ms  [CUDA memcpy HtoD]
+ 27.50%  5.8787ms         2  2.9394ms  2.5642ms  3.3145ms  [CUDA memcpy DtoH]
+ 15.41%  3.2954ms         2  1.6477ms  1.6474ms  1.6480ms  dgemm_sm_heavy_ldg_nn
+  7.36%  1.5737ms         2  786.87us  784.82us  788.92us  dgemm_sm35_ldg_nn_128x8x64x16x16
+  4.06%  867.51us         2  433.75us  418.41us  449.10us  dgemm_sm35_ldg_nn_64x8x128x8x32
+
+==20283== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 52.92%  279.37ms        11  25.398ms     372ns  278.28ms  cudaFree
+ 42.28%  223.19ms         9  24.799ms  12.308us  221.52ms  cudaMalloc
+  3.58%  18.889ms         7  2.6984ms  25.422us  4.5826ms  cudaMemcpy
+  0.75%  3.9653ms         2  1.9827ms  1.9709ms  1.9944ms  cudaDeviceSynchronize
+  0.22%  1.1667ms       178  6.5540us     203ns  235.38us  cuDeviceGetAttribute
+  0.17%  874.91us         2  437.45us  432.29us  442.62us  cuDeviceTotalMem
+  0.03%  153.76us         6  25.626us  12.717us  52.290us  cudaLaunch
+  0.02%  125.30us         2  62.648us  51.794us  73.502us  cuDeviceGetName
+  0.01%  56.030us         2  28.015us  25.596us  30.434us  cudaStreamCreateWithFlags
+  0.00%  24.958us        78     319ns     209ns  5.8420us  cudaSetupArgument
+  0.00%  24.112us        18  1.3390us     720ns  8.1280us  cudaEventCreateWithFlags
+  0.00%  17.683us         6  2.9470us     840ns  8.2970us  cudaEventRecord
+  0.00%  13.049us         8  1.6310us     829ns  3.4000us  cudaStreamWaitEvent
+  0.00%  11.458us         2  5.7290us  2.4280us  9.0300us  cudaStreamGetPriority
+  0.00%  9.1860us        11     835ns     437ns  3.9150us  cudaDeviceGetAttribute
+  0.00%  4.5740us         4  1.1430us     349ns  3.0200us  cuDeviceGetCount
+  0.00%  4.5700us         6     761ns     326ns  1.6820us  cudaConfigureCall
+  0.00%  3.0290us         2  1.5140us     626ns  2.4030us  cudaGetLastError
+  0.00%  3.0280us         1  3.0280us  3.0280us  3.0280us  cudaGetDevice
+  0.00%  2.1980us         4     549ns     290ns     928ns  cuDeviceGet
+  0.00%  1.0730us         1  1.0730us  1.0730us  1.0730us  cuInit
+  0.00%     967ns         1     967ns     967ns     967ns  cuDriverGetVersion
+==20294== NVPROF is profiling process 20294, command: ./matmult_f.nvcc2 gpulib 2000 2000 2000
+==20294== Profiling application: ./matmult_f.nvcc2 gpulib 2000 2000 2000
+==20294== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 41.95%  41.575ms         5  8.3150ms  1.5360us  10.490ms  [CUDA memcpy HtoD]
+ 27.66%  27.406ms         2  13.703ms  11.515ms  15.891ms  [CUDA memcpy DtoH]
+ 24.68%  24.458ms         2  12.229ms  12.225ms  12.233ms  dgemm_sm_heavy_ldg_nn
+  3.23%  3.1988ms         2  1.5994ms  1.5970ms  1.6018ms  dgemm_sm35_ldg_nn_64x8x128x8x32
+  2.48%  2.4592ms         2  1.2296ms  1.2226ms  1.2367ms  dgemm_sm35_ldg_nn_128x8x64x16x16
+
+==20294== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 45.92%  278.42ms        11  25.311ms     381ns  277.11ms  cudaFree
+ 37.12%  225.04ms         9  25.005ms  12.147us  223.29ms  cudaMalloc
+ 11.90%  72.166ms         7  10.309ms  25.684us  17.121ms  cudaMemcpy
+  4.65%  28.186ms         2  14.093ms  14.084ms  14.101ms  cudaDeviceSynchronize
+  0.19%  1.1522ms       178  6.4720us     199ns  236.66us  cuDeviceGetAttribute
+  0.14%  858.03us         2  429.01us  420.99us  437.03us  cuDeviceTotalMem
+  0.03%  160.54us         2  80.270us  51.284us  109.26us  cuDeviceGetName
+  0.03%  158.95us         6  26.491us  12.491us  54.278us  cudaLaunch
+  0.01%  54.951us         2  27.475us  21.980us  32.971us  cudaStreamCreateWithFlags
+  0.00%  25.826us        78     331ns     210ns  6.0640us  cudaSetupArgument
+  0.00%  20.666us        18  1.1480us     694ns  5.8700us  cudaEventCreateWithFlags
+  0.00%  14.609us         8  1.8260us     983ns  4.1710us  cudaStreamWaitEvent
+  0.00%  14.175us         6  2.3620us     878ns  4.9480us  cudaEventRecord
+  0.00%  13.778us         2  6.8890us  4.2340us  9.5440us  cudaStreamGetPriority
+  0.00%  9.3590us        11     850ns     424ns  4.0170us  cudaDeviceGetAttribute
+  0.00%  4.5850us         6     764ns     330ns  1.5760us  cudaConfigureCall
+  0.00%  4.4060us         4  1.1010us     276ns  2.8870us  cuDeviceGetCount
+  0.00%  3.1620us         1  3.1620us  3.1620us  3.1620us  cudaGetDevice
+  0.00%  2.9970us         4     749ns     288ns  1.5270us  cuDeviceGet
+  0.00%  2.9350us         2  1.4670us     617ns  2.3180us  cudaGetLastError
+  0.00%  1.1130us         1  1.1130us  1.1130us  1.1130us  cuDriverGetVersion
+  0.00%     946ns         1     946ns     946ns     946ns  cuInit
