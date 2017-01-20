@@ -170,6 +170,7 @@ int main(int argc, char** argv){
 
 	char jac[] = "jac";
 	char jacMT[] = "jacMT";
+	char jacMG[] = "jacMG";
 
 	int (*function_to_use)(int, int, double, double*, double*);
 
@@ -177,6 +178,8 @@ int main(int argc, char** argv){
 		function_to_use = &poisson_gpu1;
 	} else if (!strcmp(algorithm, jacMT)) {
 		function_to_use = &poisson_gpu2;
+	} else if (!strcmp(algorithm, jacMG)) {
+		function_to_use = &poisson_gpu3;
 	} else {
 		printf("Invalid algorithm choice, available choices [jac|jacomp|gauss]\n");
 		return(1);

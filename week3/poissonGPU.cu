@@ -27,9 +27,88 @@ void jaccobiMT(int N, double delta, double* d_f, double* d_u, double* d_uold){
 	 }
 }
 
+__global__
+void jaccobiMultiGPUtop(int N, double delta, double* d_f, double* d_u, double* d_uold){
+	 int j = blockIdx.y*blockDim.y+threadIdx.y;  //row thead id
+     int i = blockIdx.x*blockDim.x+threadIdx.x;  //column thread id
+     if (i==0 || j==0 || j==N-1) return;
+	 if ( i < N ){
+	 	d_u[i*N +j] = 0.25 *(d_uold[(i-1)*N +j] + d_uold[(i+1)*N +j] + d_uold[i*N + j-1] + d_uold[i*N + j+1] + delta*delta*d_f[i*N +j]);
+	 }
+}
+
+__global__
+void jaccobiMultiGPUbottom(int N, double delta, double* d_f, double* d_u, double* d_uold){
+	 int j = blockIdx.y*blockDim.y+threadIdx.y;  //row thead id
+     int i = blockIdx.x*blockDim.x+threadIdx.x;  //column thread id
+     
+     if (j==0 || i==N-1 || j==N-1) return;
+	 if ( i < N ){
+	 	j += (N-1)*(N-1)/2;
+	 	d_u[i*N +j] = 0.25 *(d_uold[(i-1)*N +j] + d_uold[(i+1)*N +j] + d_uold[i*N + j-1] + d_uold[i*N + j+1] + delta*delta*d_f[i*N +j]);
+	 }
+}
+
+int poisson_gpu3(int N, int kmax, double delta, double* h_f, double* h_u){
+	
+	cudaSetDevice(0);
+
+	cudaDeviceEnablePeerAccess(1, 0);
+	//allocate memory in device
+	double* d_u;    cudaMalloc((void**)&d_u, N*N*sizeof(double));
+	double* d_f;    cudaMalloc((void**)&d_f, N*N*sizeof(double));
+	double* d_uold; cudaMalloc((void**)&d_uold, N*N*sizeof(double));
+
+	// Transfer data from host to device
+	cudaMemcpyAsync(d_u, h_u, N*N*sizeof(double), cudaMemcpyHostToDevice);
+	cudaMemcpyAsync(d_f, h_f, N*N*sizeof(double), cudaMemcpyHostToDevice);
+	cudaMemcpyAsync(d_uold, h_u, N*N*sizeof(double), cudaMemcpyHostToDevice);
+	
+	cudaSetDevice(1);
+	cudaDeviceEnablePeerAccess(0, 0);
+
+    dim3 NUM_BLOCKS = dim3( N/64 +1 , N/64 +1 );
+    dim3 NUM_THREADS = dim3( 32, 32);
+
+    if (N/2 <= 32 )
+    {
+    	NUM_BLOCKS = dim3( 1, 1, 1 );
+    	NUM_THREADS = dim3( N/2, N, 1);
+    }
+
+	int iterations = 0;
+
+	// Kernel launch
+	while( iterations < kmax) {
+
+		cudaSetDevice(0);
+		jaccobiMultiGPUtop<<< NUM_BLOCKS, NUM_THREADS >>>(N,  delta,  d_f,  d_u, d_uold);
+		cudaSetDevice(1);
+		jaccobiMultiGPUbottom<<< NUM_BLOCKS, NUM_THREADS >>>(N,  delta,  d_f,  d_u, d_uold);
+		checkCudaErrors(cudaDeviceSynchronize());
+
+		double* tmp;
+		tmp = d_u;
+		d_u = d_uold;
+		d_uold = tmp;
+
+		iterations++;
+	}
+
+	// Transfer results from device to host
+	cudaSetDevice(0);
+	cudaMemcpy(h_u, d_u, N*N*sizeof(double), cudaMemcpyDeviceToHost);
+	cudaFree(d_u);
+ 	cudaFree(d_f);
+	cudaSetDevice(1);
+	cudaFree(d_uold);
+
+
+ 	return(kmax);
+}
+
 int poisson_gpu1(int N, int kmax, double delta, double* h_f, double* h_u){
 
-	cudaSetDevice(3);
 	//allocate memory in device
 	double* d_u;    cudaMalloc((void**)&d_u, N*N*sizeof(double));
 	double* d_uold; cudaMalloc((void**)&d_uold, N*N*sizeof(double));
@@ -71,7 +150,6 @@ int poisson_gpu1(int N, int kmax, double delta, double* h_f, double* h_u){
 
 int poisson_gpu2(int N, int kmax, double delta, double* h_f, double* h_u){
 
-	cudaSetDevice(3);
 	//allocate memory in device
 	double* d_u;    cudaMalloc((void**)&d_u, N*N*sizeof(double));
 	double* d_uold; cudaMalloc((void**)&d_uold, N*N*sizeof(double));
