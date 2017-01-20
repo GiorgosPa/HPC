@@ -1,4 +1,4 @@
-%% Plot 1: Permutations 
+%% Plot 1: Permutations
 clear
 close all
 %x-axis (in kilobytes)
@@ -45,7 +45,7 @@ ylabel('Mflops/sec')
 vline(log(35), 'k', 'L1')
 vline(log(256), 'k', 'L2')
 vline(log(30700), 'k', 'L3')
-saveas(gcf, 'performance1.png');  
+saveas(gcf, 'performance1.png');
 
 figure('Position', [100, 0, 1000,1000]);
 set(gca,'fontsize',18);
@@ -74,7 +74,7 @@ ylabel('Mflops/sec')
 vline(log(35), 'k', 'L1')
 vline(log(256), 'k', 'L2')
 vline(log(30700), 'k', 'L3')
-saveas(gcf, 'performance3.png'); 
+saveas(gcf, 'performance3.png');
 
 %% Plot 2: BLK : Performance for best permutation (mkn) when changing Block Size
 
@@ -94,25 +94,25 @@ vline( 115, 'k', 'L2')
 vline(1100, 'k', 'L3')
 xlabel('Block Size (# of elements)')
 ylabel('Mflops/sec')
-saveas(gcf, 'blockSizePlot.png');  
+saveas(gcf, 'blockSizePlot.png');
 
 
-%% Plot 3: BLK : 
+%% Plot 3: BLK :
 
 memoryFP2 = log2([2.344 14.648 58.594 131.836 234.375 1464.844 5859.375 13183.594 23437.500 93750.000]);
 
-%b10  = []; 
+%b10  = [];
 b35  = [1187.995 1787.822 1585.796 1492.042 1595.711 1506.629 1614.711 1579.804 1602.808 1658.971];
 b100 = [1387.556 1736.331 1799.174 2185.479 2308.248 2156.930 2239.147 2281.437 2311.155 2294.255];
 b550 = [1246.331 1890.386 1840.000 1934.367 1805.673 2122.493 2288.677 1956.010 1918.450 2649.848];
-b700 = [1300.929 1876.420 1665.948 1991.171 1864.329 2131.478 2262.787 2193.315 2052.646 2691.293]; 
+b700 = [1300.929 1876.420 1665.948 1991.171 1864.329 2131.478 2262.787 2193.315 2052.646 2691.293];
 
 %Plotting
 figure('Position', [100, 0, 1000,1000]);
 set(gca,'fontsize',14);
 set(gcf, 'Color', 'w');
   hold off;
-  
+
 plot(memoryFP2, b35, memoryFP2, b100, memoryFP2, b550, memoryFP2, b700, memoryFP, mknMFLOPS, memoryFP, libMFLOPS);
 legend('b35', 'b100','b550', 'b700', 'mkn', 'lib', 'Location', 'NorthEast')
 
@@ -121,4 +121,4 @@ vline(log2( 256), 'k', 'L2')
 vline(log2(30700), 'k', 'L3')
 xlabel('Memory Footprint (log2(kb))')
 ylabel('Mflops/sec')
-saveas(gcf, 'blockSizePlot2.png'); 
+saveas(gcf, 'blockSizePlot2.png');
