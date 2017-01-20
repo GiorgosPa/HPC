@@ -1,0 +1,261 @@
+cuda/8.0 is already loaded.
+==22712== NVPROF is profiling process 22712, command: ./driverPoisson jacMG 10 100 500
+==22712== Profiling application: ./driverPoisson jacMG 10 100 500
+==22712== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 82.29%  555.46ms     50100  11.087us  10.976us  20.513us  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+ 17.25%  116.46ms     50100  2.3240us  2.2720us  2.9440us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.27%  1.8215ms      1503  1.2110us  1.0560us  1.8240us  [CUDA memcpy HtoD]
+  0.19%  1.2618ms       501  2.5180us  2.4640us  9.6640us  [CUDA memcpy DtoH]
+
+==22712== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 37.62%  1.20314s    100200  12.007us  9.2870us  761.73us  cudaLaunch
+ 25.36%  811.17ms     50100  16.190us  4.2200us  542.16us  cudaDeviceSynchronize
+ 16.68%  533.49ms      1002  532.42us  12.373us  517.35ms  cudaDeviceEnablePeerAccess
+  5.97%  191.00ms      1503  127.08us  8.2600us  481.41us  cudaMalloc
+  4.52%  144.67ms    501000     288ns     205ns  583.22us  cudaSetupArgument
+  4.47%  142.85ms      1503  95.041us  12.288us  365.93us  cudaFree
+  3.36%  107.41ms    102204  1.0500us     710ns  591.34us  cudaSetDevice
+  1.07%  34.281ms    100200     342ns     251ns  571.92us  cudaConfigureCall
+  0.45%  14.265ms      1503  9.4910us  5.9220us  37.957us  cudaMemcpyAsync
+  0.42%  13.517ms       501  26.980us  22.537us  174.70us  cudaMemcpy
+  0.04%  1.4173ms       182  7.7870us     240ns  279.72us  cuDeviceGetAttribute
+  0.03%  1.0029ms         2  501.47us  495.89us  507.05us  cuDeviceTotalMem
+  0.00%  124.93us         2  62.467us  55.228us  69.706us  cuDeviceGetName
+  0.00%  4.1590us         3  1.3860us     362ns  3.1050us  cuDeviceGetCount
+  0.00%  3.3390us         6     556ns     307ns     956ns  cuDeviceGet
+==22754== NVPROF is profiling process 22754, command: ./driverPoisson jacMG 20 100 400
+==22754== Profiling application: ./driverPoisson jacMG 20 100 400
+==22754== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 84.52%  707.92ms     40100  17.653us  15.168us  28.320us  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+ 15.12%  126.61ms     40100  3.1570us  3.0400us  3.6480us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.22%  1.8799ms      1203  1.5620us  1.4400us  9.9520us  [CUDA memcpy HtoD]
+  0.13%  1.1273ms       401  2.8110us  2.6880us  12.672us  [CUDA memcpy DtoH]
+
+==22754== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 33.09%  912.38ms     40100  22.752us  6.3770us  150.96us  cudaDeviceSynchronize
+ 30.62%  844.32ms     80200  10.527us  9.0780us  540.39us  cudaLaunch
+ 17.24%  475.23ms       802  592.55us  12.630us  463.30ms  cudaDeviceEnablePeerAccess
+  5.32%  146.54ms      1203  121.81us  9.0360us  522.21us  cudaMalloc
+  4.91%  135.42ms    401000     337ns     284ns  553.48us  cudaSetupArgument
+  3.96%  109.24ms      1203  90.809us  12.580us  361.71us  cudaFree
+  2.95%  81.384ms     81804     994ns     735ns  541.20us  cudaSetDevice
+  1.04%  28.783ms     80200     358ns     312ns  607.89us  cudaConfigureCall
+  0.41%  11.197ms      1203  9.3070us  6.2740us  32.739us  cudaMemcpyAsync
+  0.37%  10.286ms       401  25.650us  22.989us  38.883us  cudaMemcpy
+  0.05%  1.2809ms       182  7.0380us     193ns  246.74us  cuDeviceGetAttribute
+  0.03%  837.56us         2  418.78us  407.66us  429.90us  cuDeviceTotalMem
+  0.00%  120.08us         2  60.040us  50.905us  69.176us  cuDeviceGetName
+  0.00%  3.2840us         3  1.0940us     242ns  2.4260us  cuDeviceGetCount
+  0.00%  2.5970us         6     432ns     234ns     765ns  cuDeviceGet
+==22785== NVPROF is profiling process 22785, command: ./driverPoisson jacMG 40 100 80
+==22785== Profiling application: ./driverPoisson jacMG 40 100 80
+==22785== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 82.12%  344.72ms      8100  42.557us  37.984us  56.512us  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+ 17.63%  74.007ms      8100  9.1360us  8.8320us  9.7920us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.18%  752.52us       243  3.0960us  3.0720us  3.2000us  [CUDA memcpy HtoD]
+  0.07%  305.03us        81  3.7650us  3.7120us  3.9040us  [CUDA memcpy DtoH]
+
+==22785== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 40.70%  459.89ms       162  2.8388ms  12.512us  457.07ms  cudaDeviceEnablePeerAccess
+ 34.10%  385.38ms      8100  47.578us  33.724us  63.883us  cudaDeviceSynchronize
+ 15.74%  177.91ms     16200  10.981us  9.3930us  535.39us  cudaLaunch
+  2.55%  28.779ms       243  118.43us  4.6880us  391.03us  cudaMalloc
+  2.41%  27.272ms     81000     336ns     294ns  520.12us  cudaSetupArgument
+  1.93%  21.847ms       243  89.907us  11.504us  311.07us  cudaFree
+  1.37%  15.442ms     16524     934ns     748ns  524.79us  cudaSetDevice
+  0.51%  5.7920ms     16200     357ns     256ns  521.54us  cudaConfigureCall
+  0.28%  3.1128ms       243  12.810us  9.3400us  35.958us  cudaMemcpyAsync
+  0.21%  2.4264ms        81  29.955us  27.888us  41.845us  cudaMemcpy
+  0.11%  1.2567ms       182  6.9040us     200ns  240.31us  cuDeviceGetAttribute
+  0.07%  839.25us         2  419.62us  417.78us  421.47us  cuDeviceTotalMem
+  0.01%  110.05us         2  55.023us  48.656us  61.391us  cuDeviceGetName
+  0.00%  3.7060us         3  1.2350us     324ns  2.6890us  cuDeviceGetCount
+  0.00%  2.6950us         6     449ns     240ns     721ns  cuDeviceGet
+==22809== NVPROF is profiling process 22809, command: ./driverPoisson jacMG 80 100 20
+==22809== Profiling application: ./driverPoisson jacMG 80 100 20
+==22809== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 89.44%  326.13ms      2100  155.30us  143.75us  171.94us  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+ 10.35%  37.748ms      2100  17.975us  17.728us  18.624us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.17%  608.93us        63  9.6650us  9.5040us  17.376us  [CUDA memcpy HtoD]
+  0.04%  156.93us        21  7.4720us  7.4560us  7.4890us  [CUDA memcpy DtoH]
+
+==22809== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 51.42%  439.62ms        42  10.467ms  13.881us  438.45ms  cudaDeviceEnablePeerAccess
+ 39.43%  337.11ms      2100  160.53us  148.50us  294.07us  cudaDeviceSynchronize
+  5.61%  47.924ms      4200  11.410us  9.4880us  191.29us  cudaLaunch
+  0.89%  7.6224ms        63  120.99us  4.2390us  378.91us  cudaMalloc
+  0.71%  6.1028ms     21000     290ns     227ns  514.66us  cudaSetupArgument
+  0.69%  5.8716ms        63  93.200us  11.868us  350.27us  cudaFree
+  0.47%  4.0343ms      4284     941ns     759ns  14.576us  cudaSetDevice
+  0.22%  1.8623ms      4200     443ns     260ns  530.63us  cudaConfigureCall
+  0.21%  1.8225ms        63  28.929us  21.761us  54.616us  cudaMemcpyAsync
+  0.13%  1.1199ms       182  6.1530us     203ns  214.01us  cuDeviceGetAttribute
+  0.11%  925.91us        21  44.091us  41.394us  52.027us  cudaMemcpy
+  0.10%  836.04us         2  418.02us  411.57us  424.47us  cuDeviceTotalMem
+  0.01%  93.375us         2  46.687us  43.946us  49.429us  cuDeviceGetName
+  0.00%  3.6240us         3  1.2080us     275ns  2.6640us  cuDeviceGetCount
+  0.00%  2.8670us         6     477ns     259ns     857ns  cuDeviceGet
+==22822== NVPROF is profiling process 22822, command: ./driverPoisson jacMG 160 100 5
+==22822== Profiling application: ./driverPoisson jacMG 160 100 5
+==22822== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 94.85%  209.84ms       600  349.73us  343.23us  380.00us  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+  4.90%  10.842ms       600  18.069us  17.824us  18.689us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.19%  416.23us        18  23.123us  21.792us  23.936us  [CUDA memcpy HtoD]
+  0.07%  146.34us         6  24.389us  22.816us  31.841us  [CUDA memcpy DtoH]
+
+==22822== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 65.82%  458.30ms        12  38.192ms  14.890us  457.54ms  cudaDeviceEnablePeerAccess
+ 30.60%  213.08ms       600  355.14us  348.14us  442.49us  cudaDeviceSynchronize
+  2.00%  13.917ms      1200  11.597us  9.8550us  186.34us  cudaLaunch
+  0.30%  2.0830ms        18  115.72us  4.7060us  343.22us  cudaMalloc
+  0.24%  1.6835ms        18  93.530us  11.765us  268.51us  cudaFree
+  0.22%  1.5318ms      6000     255ns     227ns  12.110us  cudaSetupArgument
+  0.20%  1.4089ms        18  78.269us  71.341us  110.30us  cudaMemcpyAsync
+  0.17%  1.2059ms      1224     985ns     777ns  15.616us  cudaSetDevice
+  0.16%  1.1347ms       182  6.2340us     207ns  220.25us  cuDeviceGetAttribute
+  0.12%  856.79us         2  428.40us  428.13us  428.66us  cuDeviceTotalMem
+  0.08%  584.19us         6  97.365us  91.410us  105.75us  cudaMemcpy
+  0.06%  387.47us      1200     322ns     293ns  1.0770us  cudaConfigureCall
+  0.01%  96.072us         2  48.036us  44.485us  51.587us  cuDeviceGetName
+  0.00%  3.7750us         3  1.2580us     311ns  2.8200us  cuDeviceGetCount
+  0.00%  2.7720us         6     462ns     257ns     786ns  cuDeviceGet
+==22834== NVPROF is profiling process 22834, command: ./driverPoisson jacMG 320 100 1
+==22834== Profiling application: ./driverPoisson jacMG 320 100 1
+==22834== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 96.39%  285.05ms       200  1.4253ms  1.4021ms  1.5388ms  jaccobiMultiGPUbottom(int, double, double*, double*, double*)
+  3.38%  10.007ms       200  50.035us  49.057us  51.521us  jaccobiMultiGPUtop(int, double, double*, double*, double*)
+  0.17%  494.69us         6  82.449us  81.729us  83.777us  [CUDA memcpy HtoD]
+  0.06%  166.34us         2  83.169us  83.137us  83.201us  [CUDA memcpy DtoH]
+
+==22834== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 61.75%  487.77ms         4  121.94ms  20.293us  486.81ms  cudaDeviceEnablePeerAccess
+ 36.22%  286.12ms       200  1.4306ms  1.4075ms  1.5438ms  cudaDeviceSynchronize
+  0.81%  6.4041ms       400  16.010us  12.923us  208.13us  cudaLaunch
+  0.25%  1.9517ms         6  325.28us  243.08us  447.88us  cudaMalloc
+  0.24%  1.8985ms         6  316.42us  299.55us  355.71us  cudaMemcpyAsync
+  0.20%  1.5563ms         6  259.38us  235.77us  304.76us  cudaFree
+  0.15%  1.1645ms       182  6.3980us     201ns  226.09us  cuDeviceGetAttribute
+  0.11%  832.60us         2  416.30us  414.74us  417.85us  cuDeviceTotalMem
+  0.09%  710.60us      2000     355ns     315ns  10.284us  cudaSetupArgument
+  0.09%  693.62us         2  346.81us  344.71us  348.91us  cudaMemcpy
+  0.07%  528.88us       408  1.2960us  1.0760us  16.422us  cudaSetDevice
+  0.02%  171.25us       400     428ns     383ns  3.8140us  cudaConfigureCall
+  0.01%  98.917us         2  49.458us  48.447us  50.470us  cuDeviceGetName
+  0.00%  3.5250us         3  1.1750us     276ns  2.5890us  cuDeviceGetCount
+  0.00%  2.6950us         6     449ns     252ns     759ns  cuDeviceGet
+==22846== NVPROF is profiling process 22846, command: ./driverPoisson jacMG 640 100 1
+CUDA error at poissonGPU.cu:88 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==22846== Profiling application: ./driverPoisson jacMG 640 100 1
+==22846== Warning: Found 2 invalid records in the result.
+==22846== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==22846== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  3.7640ms         3  1.2547ms  1.2005ms  1.2888ms  [CUDA memcpy HtoD]
+
+==22846== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 72.43%  496.77ms         2  248.39ms  930.06us  495.84ms  cudaDeviceEnablePeerAccess
+ 20.62%  141.43ms         1  141.43ms  141.43ms  141.43ms  cudaDeviceReset
+  5.88%  40.360ms         1  40.360ms  40.360ms  40.360ms  cudaDeviceSynchronize
+  0.55%  3.8033ms         3  1.2678ms  1.2067ms  1.3147ms  cudaMemcpyAsync
+  0.18%  1.2129ms       182  6.6640us     242ns  226.48us  cuDeviceGetAttribute
+  0.14%  985.40us         2  492.70us  485.13us  500.28us  cuDeviceTotalMem
+  0.11%  788.49us         3  262.83us  229.47us  328.27us  cudaMalloc
+  0.05%  360.56us         2  180.28us  145.44us  215.12us  cudaLaunch
+  0.01%  100.20us         2  50.099us  47.791us  52.407us  cuDeviceGetName
+  0.00%  28.426us         4  7.1060us  2.4230us  18.314us  cudaSetDevice
+  0.00%  12.896us        10  1.2890us     249ns  9.5520us  cudaSetupArgument
+  0.00%  4.1220us         3  1.3740us     265ns  3.2150us  cuDeviceGetCount
+  0.00%  3.1920us         6     532ns     265ns     847ns  cuDeviceGet
+  0.00%  1.8870us         2     943ns     599ns  1.2880us  cudaConfigureCall
+======== Error: Application returned non-zero code 1
+==22858== NVPROF is profiling process 22858, command: ./driverPoisson jacMG 1280 100 1
+CUDA error at poissonGPU.cu:88 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==22858== Profiling application: ./driverPoisson jacMG 1280 100 1
+==22858== Warning: Found 2 invalid records in the result.
+==22858== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==22858== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  14.597ms         3  4.8656ms  4.8261ms  4.9234ms  [CUDA memcpy HtoD]
+
+==22858== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 65.33%  490.18ms         2  245.09ms  1.1508ms  489.03ms  cudaDeviceEnablePeerAccess
+ 19.34%  145.08ms         1  145.08ms  145.08ms  145.08ms  cudaDeviceReset
+ 12.91%  96.877ms         1  96.877ms  96.877ms  96.877ms  cudaDeviceSynchronize
+  1.95%  14.643ms         3  4.8811ms  4.8333ms  4.9521ms  cudaMemcpyAsync
+  0.16%  1.2119ms       182  6.6590us     241ns  227.80us  cuDeviceGetAttribute
+  0.13%  970.59us         2  485.30us  484.98us  485.61us  cuDeviceTotalMem
+  0.11%  831.57us         3  277.19us  242.82us  331.45us  cudaMalloc
+  0.05%  368.84us         2  184.42us  140.13us  228.71us  cudaLaunch
+  0.01%  100.80us         2  50.398us  47.691us  53.106us  cuDeviceGetName
+  0.00%  32.106us         4  8.0260us  2.3070us  19.367us  cudaSetDevice
+  0.00%  12.759us        10  1.2750us     271ns  9.4760us  cudaSetupArgument
+  0.00%  4.5500us         3  1.5160us     339ns  3.3750us  cuDeviceGetCount
+  0.00%  3.1600us         6     526ns     301ns     868ns  cuDeviceGet
+  0.00%  1.9160us         2     958ns     552ns  1.3640us  cudaConfigureCall
+======== Error: Application returned non-zero code 1
+==22871== NVPROF is profiling process 22871, command: ./driverPoisson jacMG 2000 100 1
+CUDA error at poissonGPU.cu:88 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==22871== Profiling application: ./driverPoisson jacMG 2000 100 1
+==22871== Warning: Found 2 invalid records in the result.
+==22871== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==22871== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  35.426ms         3  11.809ms  11.769ms  11.876ms  [CUDA memcpy HtoD]
+
+==22871== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 68.60%  493.16ms         2  246.58ms  1.2384ms  491.92ms  cudaDeviceEnablePeerAccess
+ 19.55%  140.53ms         1  140.53ms  140.53ms  140.53ms  cudaDeviceReset
+  6.38%  45.862ms         1  45.862ms  45.862ms  45.862ms  cudaDeviceSynchronize
+  4.94%  35.503ms         3  11.834ms  11.790ms  11.909ms  cudaMemcpyAsync
+  0.18%  1.3261ms       182  7.2860us     265ns  249.71us  cuDeviceGetAttribute
+  0.15%  1.0846ms         2  542.32us  534.29us  550.35us  cuDeviceTotalMem
+  0.13%  924.41us         3  308.14us  271.21us  360.03us  cudaMalloc
+  0.05%  373.63us         2  186.82us  136.50us  237.13us  cudaLaunch
+  0.02%  110.29us         2  55.146us  51.179us  59.114us  cuDeviceGetName
+  0.00%  35.474us         4  8.8680us  2.1640us  24.371us  cudaSetDevice
+  0.00%  13.269us        10  1.3260us     263ns  9.8970us  cudaSetupArgument
+  0.00%  4.7280us         3  1.5760us     364ns  3.5280us  cuDeviceGetCount
+  0.00%  3.5410us         6     590ns     333ns  1.0210us  cuDeviceGet
+  0.00%  1.8310us         2     915ns     644ns  1.1870us  cudaConfigureCall
+======== Error: Application returned non-zero code 1
+==22895== NVPROF is profiling process 22895, command: ./driverPoisson jacMG 2600 100 1
+CUDA error at poissonGPU.cu:88 code=77(cudaErrorIllegalAddress) "cudaDeviceSynchronize()" 
+==22895== Profiling application: ./driverPoisson jacMG 2600 100 1
+==22895== Warning: Found 2 invalid records in the result.
+==22895== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==22895== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+100.00%  60.158ms         3  20.053ms  19.962ms  20.222ms  [CUDA memcpy HtoD]
+
+==22895== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 61.76%  485.91ms         2  242.95ms  1.2521ms  484.65ms  cudaDeviceEnablePeerAccess
+ 18.43%  144.99ms         1  144.99ms  144.99ms  144.99ms  cudaDeviceReset
+ 11.69%  91.953ms         1  91.953ms  91.953ms  91.953ms  cudaDeviceSynchronize
+  7.66%  60.240ms         3  20.080ms  19.986ms  20.256ms  cudaMemcpyAsync
+  0.15%  1.2075ms       182  6.6340us     238ns  226.63us  cuDeviceGetAttribute
+  0.12%  978.13us         2  489.07us  486.34us  491.79us  cuDeviceTotalMem
+  0.12%  971.99us         3  324.00us  286.66us  388.77us  cudaMalloc
+  0.05%  366.53us         2  183.26us  138.05us  228.48us  cudaLaunch
+  0.01%  111.26us         2  55.630us  53.450us  57.811us  cuDeviceGetName
+  0.00%  29.466us         4  7.3660us  2.2260us  18.457us  cudaSetDevice
+  0.00%  12.921us        10  1.2920us     307ns  9.3280us  cudaSetupArgument
+  0.00%  4.3430us         3  1.4470us     316ns  3.3780us  cuDeviceGetCount
+  0.00%  3.0990us         6     516ns     284ns     840ns  cuDeviceGet
+  0.00%  1.8640us         2     932ns     599ns  1.2650us  cudaConfigureCall
+======== Error: Application returned non-zero code 1

@@ -1,0 +1,29 @@
+TARGET	= driverPoisson
+
+OPT	= 
+XPIC  = -Xcompiler
+XOPTS = 
+ARCH  = -arch=sm_30
+OMP   = -fopenmp
+
+CXX	= nvcc
+CXXFLAGS= --compiler-options "$(OPT) $(PIC) $(OMP)" $(ARCH) $(XOPTS) $(XPIC)
+
+CUDA_PATH ?= /appl/cuda/8.0
+INCLUDES = -I$(CUDA_PATH)/include -I$(CUDA_PATH)/samples/common/inc
+
+XLIBS	= -lcublas
+
+$(TARGET): mainPoisson.o poissonGPU.o 
+	$(CXX) -o $@ $(CXXFLAGS) $(INCLUDES) $^ $(XLIBS)
+
+.SUFFIXES: .cu
+.c.o:
+	$(CXX) -o $*.o -c $*.c $(CXXFLAGS) $(INCLUDES)
+
+.SUFFIXES: .cu
+.cu.o:
+	$(CXX) -o $*.o -c $*.cu $(CXXFLAGS)  $(INCLUDES)
+
+clean:
+	@/bin/rm -f $(TARGET) $(LIBOBJS)

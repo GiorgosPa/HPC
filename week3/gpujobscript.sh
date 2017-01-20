@@ -35,14 +35,14 @@ module load cuda/8.0
 #   than 2 cpu-cores
 #
 
-nvprof ./driverPoisson jacMG 10 1000 50000
-nvprof ./driverPoisson jacMG 20 1000 4000
-nvprof ./driverPoisson jacMG 40 1000 800
-nvprof ./driverPoisson jacMG 80 1000 200
-nvprof ./driverPoisson jacMG 160 1000 50
-nvprof ./driverPoisson jacMG 320 1000 10
-nvprof ./driverPoisson jacMG 640 1000 1
-nvprof ./driverPoisson jacMG 1280 1000 1
-nvprof ./driverPoisson jacMG 2000 1000 1
-nvprof ./driverPoisson jacMG 2600 1000 1
+nvprof ./driverPoisson jacMG 10 100 500
+nvprof ./driverPoisson jacMG 20 100 400
+nvprof ./driverPoisson jacMG 40 100 80
+nvprof ./driverPoisson jacMG 80 100 20
+nvprof ./driverPoisson jacMG 160 100 5
+nvprof ./driverPoisson jacMG 320 100 1
+nvprof ./driverPoisson jacMG 640 100 1
+nvprof ./driverPoisson jacMG 1280 100 1
+nvprof ./driverPoisson jacMG 2000 100 1
+nvprof ./driverPoisson jacMG 2600 100 1
 

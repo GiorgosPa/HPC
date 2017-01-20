@@ -1,0 +1,4 @@
+cuda/8.0 is already loaded.
+==22130== NVPROF is profiling process 22130, command: ./driverPoisson jacMG 10 1000 50000
+==22130== Profiling application: ./driverPoisson jacMG 10 1000 50000
+Terminated
